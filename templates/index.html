@@ -1,163 +1,199 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Questionnaire : Chaleur Urbaine</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Questionnaire : Chaleur Urbaine</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Questionnaire : Perception de la Chaleur Urbaine et Comportements Environnementaux</h1>
+<h1>Questionnaire - Perception de la Chaleur Urbaine et Comportements Environnementaux</h1>
 
-    <form id="questionnaireForm" method="POST">
+<form method="POST">
 
-        <!-- Section 1: Informations générales -->
-        <section>
-            <h2>Informations générales</h2>
-            <label for="genre">Genre :</label>
-            <select id="genre" name="genre">
-                <option value="">Choisir...</option>
-                <option value="homme">Homme</option>
-                <option value="femme">Femme</option>
-                <option value="autre">Autre</option>
-                <option value="non_precise">Ne souhaite pas préciser</option>
-            </select><br><br>
+<!-- Section A -->
+<section>
+<h2>Section A : Informations Générales</h2>
 
-            <label for="age">Tranche d'âge :</label>
-            <select id="age" name="age">
-                <option value="">Choisir...</option>
-                <option value="18-25">18-25 ans</option>
-                <option value="26-35">26-35 ans</option>
-                <option value="36-45">36-45 ans</option>
-                <option value="46-55">46-55 ans</option>
-                <option value="56-65">56-65 ans</option>
-                <option value="65+">65 ans et plus</option>
-            </select><br><br>
+<label>Tranche d'âge :</label><br>
+<select name="age">
+<option value="">Choisir...</option>
+<option value="18-24">18-24 ans</option>
+<option value="25-34">25-34 ans</option>
+<option value="35-49">35-49 ans</option>
+<option value="50-64">50-64 ans</option>
+<option value="65+">65 ans et plus</option>
+</select><br><br>
 
-            <label for="niveau_etude">Niveau d'études le plus élevé :</label>
-            <select id="niveau_etude" name="niveau_etude">
-                <option value="">Choisir...</option>
-                <option value="secondaire">Secondaire</option>
-                <option value="collegial">Collégial</option>
-                <option value="universitaire_1er">Universitaire 1er cycle</option>
-                <option value="universitaire_2e">Universitaire 2e cycle</option>
-                <option value="universitaire_3e">Universitaire 3e cycle</option>
-                <option value="autre">Autre</option>
-            </select><br><br>
-        </section>
+<label>Genre :</label><br>
+<input type="radio" name="genre" value="femme"> Femme
+<input type="radio" name="genre" value="homme"> Homme
+<input type="radio" name="genre" value="autre"> Autre (préciser ci-dessous)<br>
+<input type="radio" name="genre" value="nopref"> Je préfère ne pas répondre<br>
+<input type="text" name="genre_autre" placeholder="Précisez si autre"><br><br>
 
-        <!-- Section 2: Perception du risque (Échelle de Likert) -->
-        <section>
-            <h2>Perception du risque lié à la chaleur urbaine</h2>
-            <p>Indiquez votre degré d'accord avec les affirmations suivantes (1 = Pas du tout d'accord, 5 = Tout à fait d'accord) :</p>
-            <label>La chaleur excessive en ville représente un risque important pour ma santé.</label><br>
-            <input type="radio" name="risque_sante" value="1"> 1
-            <input type="radio" name="risque_sante" value="2"> 2
-            <input type="radio" name="risque_sante" value="3"> 3
-            <input type="radio" name="risque_sante" value="4"> 4
-            <input type="radio" name="risque_sante" value="5"> 5 <br><br>
+<label>Niveau d'études :</label><br>
+<select name="niveau_etude">
+<option value="">Choisir...</option>
+<option value="primaire">Primaire</option>
+<option value="secondaire">Secondaire</option>
+<option value="collegial">Collégial (DEC, AEC)</option>
+<option value="universitaire">Universitaire (Certificat, Bac, Maîtrise, Doctorat)</option>
+<option value="autre">Autre</option>
+</select><br><br>
 
-            <label>Je suis préoccupé(e) par l'augmentation des températures en milieu urbain.</label><br>
-            <input type="radio" name="preoccupation_temp" value="1"> 1
-            <input type="radio" name="preoccupation_temp" value="2"> 2
-            <input type="radio" name="preoccupation_temp" value="3"> 3
-            <input type="radio" name="preoccupation_temp" value="4"> 4
-            <input type="radio" name="preoccupation_temp" value="5"> 5 <br><br>
-        </section>
+<label>Ville principale :</label><br>
+<select name="ville">
+<option value="">Choisir...</option>
+<option value="Trois-Rivières">Trois-Rivières</option>
+<option value="Montréal">Montréal</option>
+<option value="autre">Autre (préciser ci-dessous)</option>
+</select><br>
+<input type="text" name="ville_autre" placeholder="Précisez si autre"><br><br>
 
-        <!-- Section 3: Efficacité des stratégies (Échelle de Likert) -->
-        <section>
-            <h2>Efficacité perçue des stratégies d'adaptation</h2>
-             <p>Évaluez l'efficacité des stratégies suivantes pour réduire l'impact de la chaleur urbaine (1 = Pas du tout efficace, 5 = Très efficace) :</p>
-            <label>Augmenter le nombre d'arbres et d'espaces verts.</label><br>
-            <input type="radio" name="efficacite_arbres" value="1"> 1
-            <input type="radio" name="efficacite_arbres" value="2"> 2
-            <input type="radio" name="efficacite_arbres" value="3"> 3
-            <input type="radio" name="efficacite_arbres" value="4"> 4
-            <input type="radio" name="efficacite_arbres" value="5"> 5 <br><br>
+<label>Type de quartier :</label><br>
+<select name="quartier">
+<option value="">Choisir...</option>
+<option value="centre_dense">Centre-ville très dense</option>
+<option value="urbain_dense">Quartier urbain dense</option>
+<option value="res_moderate">Quartier résidentiel verdure modérée</option>
+<option value="res_vert">Quartier résidentiel très vert</option>
+<option value="banlieue">Périphérie / Banlieue</option>
+</select><br><br>
 
-            <label>Utiliser des matériaux de construction clairs pour les bâtiments et les routes.</label><br>
-            <input type="radio" name="efficacite_materiaux" value="1"> 1
-            <input type="radio" name="efficacite_materiaux" value="2"> 2
-            <input type="radio" name="efficacite_materiaux" value="3"> 3
-            <input type="radio" name="efficacite_materiaux" value="4"> 4
-            <input type="radio" name="efficacite_materiaux" value="5"> 5 <br><br>
-        </section>
+<label>Type de logement :</label><br>
+<select name="logement">
+<option value="">Choisir...</option>
+<option value="maison_uni">Maison unifamiliale</option>
+<option value="maison_rangee">Maison jumelée ou en rangée</option>
+<option value="app_petit">Appartement petit immeuble</option>
+<option value="app_grand">Appartement grand immeuble</option>
+<option value="autre">Autre</option>
+</select><br><br>
 
-        <!-- Section 4: Perspective environnementale (Échelle de Likert) -->
-        <section>
-            <h2>Perspective environnementale générale</h2>
-            <p>Indiquez votre degré d'accord avec les affirmations suivantes (1 = Pas du tout d'accord, 5 = Tout à fait d'accord) :</p>
-            <label>La protection de l'environnement est une priorité importante.</label><br>
-            <input type="radio" name="priorite_env" value="1"> 1
-            <input type="radio" name="priorite_env" value="2"> 2
-            <input type="radio" name="priorite_env" value="3"> 3
-            <input type="radio" name="priorite_env" value="4"> 4
-            <input type="radio" name="priorite_env" value="5"> 5 <br><br>
+<label>Utilisez-vous la climatisation ?</label><br>
+<input type="radio" name="climatisation" value="oui"> Oui
+<input type="radio" name="climatisation" value="non"> Non
+<br><br>
+</section>
 
-            <label>Les actions individuelles ont un impact significatif sur l'environnement.</label><br>
-            <input type="radio" name="impact_individuel" value="1"> 1
-            <input type="radio" name="impact_individuel" value="2"> 2
-            <input type="radio" name="impact_individuel" value="3"> 3
-            <input type="radio" name="impact_individuel" value="4"> 4
-            <input type="radio" name="impact_individuel" value="5"> 5 <br><br>
-        </section>
+<!-- Section 1 -->
+<section>
+<h2>Section 1 : Risque lié à la Chaleur</h2>
+<p>1 = Tout à fait en désaccord; 5 = Tout à fait d'accord</p>
 
-        <!-- Section 5: Intentions écologiques (Échelle de Likert) -->
-        <section>
-            <h2>Intentions de comportements écologiques</h2>
-            <p>Indiquez votre intention d'adopter les comportements suivants dans les prochains mois (1 = Très improbable, 5 = Très probable) :</p>
-            <label>Réduire ma consommation d'énergie à la maison.</label><br>
-            <input type="radio" name="intention_energie" value="1"> 1
-            <input type="radio" name="intention_energie" value="2"> 2
-            <input type="radio" name="intention_energie" value="3"> 3
-            <input type="radio" name="intention_energie" value="4"> 4
-            <input type="radio" name="intention_energie" value="5"> 5 <br><br>
+{% for q in [
+('vagues_intenses', 'Les vagues de chaleur deviennent plus intenses.'),
+('conseq_sante', 'Les conséquences des vagues de chaleur sur la santé sont graves.'),
+('menace_env', 'Les vagues de chaleur représentent une menace mineure pour l’environnement urbain.'),
+('vulnerable', 'Je me sens personnellement vulnérable aux effets des vagues de chaleur.'),
+('logement_protection', 'Mon logement me protège bien de la chaleur intense.'),
+('crainte_futur', 'Je crains que les futures vagues de chaleur affectent ma qualité de vie.')
+] %}
+<label>{{ q[1] }}</label><br>
+{% for i in range(1,6) %}
+<input type="radio" name="{{ q[0] }}" value="{{ i }}"> {{ i }}
+{% endfor %}
+<br><br>
+{% endfor %}
+</section>
 
-            <label>Utiliser davantage les transports en commun ou le vélo.</label><br>
-            <input type="radio" name="intention_transport" value="1"> 1
-            <input type="radio" name="intention_transport" value="2"> 2
-            <input type="radio" name="intention_transport" value="3"> 3
-            <input type="radio" name="intention_transport" value="4"> 4
-            <input type="radio" name="intention_transport" value="5"> 5 <br><br>
-        </section>
+<!-- Section 2 -->
+<section>
+<h2>Section 2 : Efficacité des stratégies contre la chaleur</h2>
+<p>1 = Tout à fait en désaccord; 5 = Tout à fait d'accord</p>
 
-        <!-- Section 6: Habitudes écologiques (Échelle de fréquence) -->
-        <section>
-            <h2>Habitudes écologiques actuelles</h2>
-            <p>À quelle fréquence adoptez-vous les comportements suivants ? (Jamais, Rarement, Parfois, Souvent, Toujours)</p>
-            <label>Je trie mes déchets pour le recyclage.</label><br>
-            <select name="habitude_tri">
-                <option value="">Choisir...</option>
-                <option value="jamais">Jamais</option>
-                <option value="rarement">Rarement</option>
-                <option value="parfois">Parfois</option>
-                <option value="souvent">Souvent</option>
-                <option value="toujours">Toujours</option>
-            </select><br><br>
+{% for q in [
+('parcs_efficace', 'Fréquenter les parcs est efficace pour réduire mon inconfort.'),
+('eau_publique', 'Accès à des points d’eau publics est efficace.'),
+('arbres_inutile', 'Augmenter le nombre d’arbres est inutile pour réduire la température.'),
+('trouver_endroits_frais', 'Je peux trouver/utiliser des endroits frais en ville.'),
+('difficile_comportements', 'Il est difficile d’adopter certains comportements pour gérer la chaleur.'),
+('acces_parcs', 'Il m’est facile d’accéder à des parcs de qualité.'),
+('transport_chaud', 'Même quand il fait chaud, je peux utiliser marche/vélo.')
+] %}
+<label>{{ q[1] }}</label><br>
+{% for i in range(1,6) %}
+<input type="radio" name="{{ q[0] }}" value="{{ i }}"> {{ i }}
+{% endfor %}
+<br><br>
+{% endfor %}
+</section>
 
-            <label>J'essaie de limiter ma consommation d'eau.</label><br>
-             <select name="habitude_eau">
-                <option value="">Choisir...</option>
-                <option value="jamais">Jamais</option>
-                <option value="rarement">Rarement</option>
-                <option value="parfois">Parfois</option>
-                <option value="souvent">Souvent</option>
-                <option value="toujours">Toujours</option>
-            </select><br><br>
-        </section>
+<!-- Section 3 -->
+<section>
+<h2>Section 3 : Perspective environnementale</h2>
+<p>1 = Tout à fait en désaccord; 5 = Tout à fait d'accord</p>
 
-        <!-- Section 7: Commentaires libres -->
-        <section>
-            <h2>Commentaires</h2>
-            <label for="commentaires">Avez-vous des commentaires ou suggestions supplémentaires concernant la chaleur urbaine ou les comportements environnementaux ?</label><br>
-            <textarea id="commentaires" name="commentaires" rows="4" cols="50"></textarea>
-        </section>
+{% for q in [
+('valoriser_espaces_verts', 'Valoriser et protéger les espaces verts est important pour moi.'),
+('soutenir_politiques', 'Soutenir les politiques pour augmenter la végétation est bien.'),
+('prefere_interieur', 'Lors des canicules, je préfère rester à l’intérieur.'),
+('contre_reduction_voiture', 'Réduire l’espace pour voitures n’est pas souhaitable.'),
+('espaces_agreables', 'Espaces verts/bleus rendent la ville plus agréable.'),
+('proteger_acces_eau', 'Protéger les accès publics à l’eau est important.'),
+('municipalite_responsable', 'C’est à la municipalité de s’adapter, pas aux citoyens.')
+] %}
+<label>{{ q[1] }}</label><br>
+{% for i in range(1,6) %}
+<input type="radio" name="{{ q[0] }}" value="{{ i }}"> {{ i }}
+{% endfor %}
+<br><br>
+{% endfor %}
+</section>
 
-        <button type="submit">Soumettre le questionnaire</button>
+<!-- Section 4 -->
+<section>
+<h2>Section 4 : Intentions environnementales</h2>
+<p>1 = Tout à fait en désaccord; 5 = Tout à fait d'accord</p>
 
-    </form>
+{% for q in [
+('intention_frequent_parcs', 'J’ai l’intention de fréquenter plus souvent les parcs.'),
+('intention_soutenir_initiatives', 'J’ai l’intention de soutenir les initiatives vertes.'),
+('pas_intention_s_informer', 'Je n’ai pas l’intention de m’informer davantage.'),
+('intention_comportements_eco', 'J’ai l’intention d’adopter des comportements plus écologiques.'),
+('pas_intention_transport_actif', 'Je n’ai pas l’intention d’utiliser plus les transports actifs.'),
+('motivation_si_municipalite', 'Je serais plus motivé si la municipalité s’engageait plus.')
+] %}
+<label>{{ q[1] }}</label><br>
+{% for i in range(1,6) %}
+<input type="radio" name="{{ q[0] }}" value="{{ i }}"> {{ i }}
+{% endfor %}
+<br><br>
+{% endfor %}
+</section>
 
-    <script src="script.js"></script>
+<!-- Section 5 -->
+<section>
+<h2>Section 5 : Habitudes et gestes écologiques (12 derniers mois)</h2>
+<p>1=Jamais, 5=Très souvent</p>
+
+{% for q in [
+('freq_parcs', 'Fréquenté des parcs pour vous rafraîchir'),
+('activite_verdissement', 'Participé à une activité de verdissement'),
+('petition_contact', 'Signé une pétition ou contacté un élu'),
+('reduire_eau', 'Réduit votre consommation d’eau'),
+('transport_alternatif', 'Utilisé transport en commun, vélo, marche'),
+('compost', 'Composté vos matières organiques'),
+('refroidissement_passif', 'Favorisé refroidissement passif plutôt que climatisation')
+] %}
+<label>{{ q[1] }}</label><br>
+{% for i in range(1,6) %}
+<input type="radio" name="{{ q[0] }}" value="{{ i }}"> {{ i }}
+{% endfor %}
+<input type="checkbox" name="{{ q[0] }}_na" value="na"> Non applicable
+<br><br>
+{% endfor %}
+</section>
+
+<!-- Section 6 -->
+<section>
+<h2>Section 6 : Commentaires</h2>
+<label for="commentaires">Commentaires ou suggestions :</label><br>
+<textarea id="commentaires" name="commentaires" rows="4" cols="50"></textarea>
+</section>
+
+<button type="submit">Soumettre le questionnaire</button>
+</form>
 </body>
 </html>
