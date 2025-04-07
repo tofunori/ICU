@@ -97,20 +97,53 @@
 <h2>Section 1 : Risque lié à la Chaleur</h2>
 <p>1 = Tout à fait en désaccord; 5 = Tout à fait d'accord</p>
 
-{% for q in [
-('vagues_intenses', 'Les vagues de chaleur deviennent plus intenses.'),
-('conseq_sante', 'Les conséquences des vagues de chaleur sur la santé sont graves.'),
-('menace_env', 'Les vagues de chaleur représentent une menace mineure pour l’environnement urbain.'),
-('vulnerable', 'Je me sens personnellement vulnérable aux effets des vagues de chaleur.'),
-('logement_protection', 'Mon logement me protège bien de la chaleur intense.'),
-('crainte_futur', 'Je crains que les futures vagues de chaleur affectent ma qualité de vie.')
-] %}
-<label>{{ q[1] }}</label><br>
-{% for i in range(1,6) %}
-<input type="radio" name="{{ q[0] }}" value="{{ i }}"> {{ i }}
-{% endfor %}
+<label>1.1. Les vagues de chaleur que nous connaissons deviennent de plus en plus intenses.</label><br>
+<input type="radio" name="vagues_intenses" value="1"> 1
+<input type="radio" name="vagues_intenses" value="2"> 2
+<input type="radio" name="vagues_intenses" value="3"> 3
+<input type="radio" name="vagues_intenses" value="4"> 4
+<input type="radio" name="vagues_intenses" value="5"> 5
 <br><br>
-{% endfor %}
+
+<label>1.2. Les conséquences des vagues de chaleur sur la santé des gens dans ma ville sont graves.</label><br>
+<input type="radio" name="conseq_sante" value="1"> 1
+<input type="radio" name="conseq_sante" value="2"> 2
+<input type="radio" name="conseq_sante" value="3"> 3
+<input type="radio" name="conseq_sante" value="4"> 4
+<input type="radio" name="conseq_sante" value="5"> 5
+<br><br>
+
+<label>1.3. Les vagues de chaleur représentent une menace mineure pour l'environnement urbain (ex: stress sur les infrastructures, la végétation).</label><br>
+<input type="radio" name="menace_env" value="1"> 1
+<input type="radio" name="menace_env" value="2"> 2
+<input type="radio" name="menace_env" value="3"> 3
+<input type="radio" name="menace_env" value="4"> 4
+<input type="radio" name="menace_env" value="5"> 5
+<br><br>
+
+<label>1.4. Je me sens personnellement vulnérable aux effets négatifs des vagues de chaleur.</label><br>
+<input type="radio" name="vulnerable" value="1"> 1
+<input type="radio" name="vulnerable" value="2"> 2
+<input type="radio" name="vulnerable" value="3"> 3
+<input type="radio" name="vulnerable" value="4"> 4
+<input type="radio" name="vulnerable" value="5"> 5
+<br><br>
+
+<label>1.5. Mon logement actuel me protège bien de la chaleur intense en été.</label><br>
+<input type="radio" name="logement_protection" value="1"> 1
+<input type="radio" name="logement_protection" value="2"> 2
+<input type="radio" name="logement_protection" value="3"> 3
+<input type="radio" name="logement_protection" value="4"> 4
+<input type="radio" name="logement_protection" value="5"> 5
+<br><br>
+
+<label>1.6. Je crains que les futures vagues de chaleur affectent négativement ma qualité de vie.</label><br>
+<input type="radio" name="crainte_futur" value="1"> 1
+<input type="radio" name="crainte_futur" value="2"> 2
+<input type="radio" name="crainte_futur" value="3"> 3
+<input type="radio" name="crainte_futur" value="4"> 4
+<input type="radio" name="crainte_futur" value="5"> 5
+<br><br>
 </section>
 
 <!-- Section 2 -->
@@ -118,21 +151,61 @@
 <h2>Section 2 : Efficacité des stratégies contre la chaleur</h2>
 <p>1 = Tout à fait en désaccord; 5 = Tout à fait d'accord</p>
 
-{% for q in [
-('parcs_efficace', 'Fréquenter les parcs est efficace pour réduire mon inconfort.'),
-('eau_publique', 'Accès à des points d’eau publics est efficace.'),
-('arbres_inutile', 'Augmenter le nombre d’arbres est inutile pour réduire la température.'),
-('trouver_endroits_frais', 'Je peux trouver/utiliser des endroits frais en ville.'),
-('difficile_comportements', 'Il est difficile d’adopter certains comportements pour gérer la chaleur.'),
-('acces_parcs', 'Il m’est facile d’accéder à des parcs de qualité.'),
-('transport_chaud', 'Même quand il fait chaud, je peux utiliser marche/vélo.')
-] %}
-<label>{{ q[1] }}</label><br>
-{% for i in range(1,6) %}
-<input type="radio" name="{{ q[0] }}" value="{{ i }}"> {{ i }}
-{% endfor %}
+<label>2.1. Fréquenter les parcs et les espaces verts est une stratégie efficace pour réduire mon inconfort personnel pendant les canicules.</label><br>
+<input type="radio" name="parcs_efficace" value="1"> 1
+<input type="radio" name="parcs_efficace" value="2"> 2
+<input type="radio" name="parcs_efficace" value="3"> 3
+<input type="radio" name="parcs_efficace" value="4"> 4
+<input type="radio" name="parcs_efficace" value="5"> 5
 <br><br>
-{% endfor %}
+
+<label>2.2. Avoir accès à des points d'eau publics (piscines, jeux d'eau, plage) est un moyen efficace de mieux supporter la chaleur.</label><br>
+<input type="radio" name="eau_publique" value="1"> 1
+<input type="radio" name="eau_publique" value="2"> 2
+<input type="radio" name="eau_publique" value="3"> 3
+<input type="radio" name="eau_publique" value="4"> 4
+<input type="radio" name="eau_publique" value="5"> 5
+<br><br>
+
+<label>2.3. Je trouve inutile l’augmentation du nombre d'arbres et d'espaces verts en ville pour réduire la température globale.</label><br>
+<input type="radio" name="arbres_inutile" value="1"> 1
+<input type="radio" name="arbres_inutile" value="2"> 2
+<input type="radio" name="arbres_inutile" value="3"> 3
+<input type="radio" name="arbres_inutile" value="4"> 4
+<input type="radio" name="arbres_inutile" value="5"> 5
+<br><br>
+
+<label>2.4. Je me sens capable de trouver et d'utiliser des endroits frais (parcs, lieux climatisés) dans ma ville pendant une canicule.</label><br>
+<input type="radio" name="trouver_endroits_frais" value="1"> 1
+<input type="radio" name="trouver_endroits_frais" value="2"> 2
+<input type="radio" name="trouver_endroits_frais" value="3"> 3
+<input type="radio" name="trouver_endroits_frais" value="4"> 4
+<input type="radio" name="trouver_endroits_frais" value="5"> 5
+<br><br>
+
+<label>2.5. Je trouve parfois difficile d’adopter certains comportements pour mieux gérer la chaleur (ex : adapter mon horaire, boire davantage d’eau).</label><br>
+<input type="radio" name="difficile_comportements" value="1"> 1
+<input type="radio" name="difficile_comportements" value="2"> 2
+<input type="radio" name="difficile_comportements" value="3"> 3
+<input type="radio" name="difficile_comportements" value="4"> 4
+<input type="radio" name="difficile_comportements" value="5"> 5
+<br><br>
+
+<label>2.6. Il m'est facile d'accéder à des parcs ou espaces verts de qualité près de chez moi.</label><br>
+<input type="radio" name="acces_parcs" value="1"> 1
+<input type="radio" name="acces_parcs" value="2"> 2
+<input type="radio" name="acces_parcs" value="3"> 3
+<input type="radio" name="acces_parcs" value="4"> 4
+<input type="radio" name="acces_parcs" value="5"> 5
+<br><br>
+
+<label>2.7. Même lorsqu’il fait très chaud, je me sens capable d’utiliser des modes de transport actifs (marche, vélo) pour mes déplacements.</label><br>
+<input type="radio" name="transport_chaud" value="1"> 1
+<input type="radio" name="transport_chaud" value="2"> 2
+<input type="radio" name="transport_chaud" value="3"> 3
+<input type="radio" name="transport_chaud" value="4"> 4
+<input type="radio" name="transport_chaud" value="5"> 5
+<br><br>
 </section>
 
 <!-- Section 3 -->
@@ -140,21 +213,61 @@
 <h2>Section 3 : Perspective environnementale</h2>
 <p>1 = Tout à fait en désaccord; 5 = Tout à fait d'accord</p>
 
-{% for q in [
-('valoriser_espaces_verts', 'Valoriser et protéger les espaces verts est important pour moi.'),
-('soutenir_politiques', 'Soutenir les politiques pour augmenter la végétation est bien.'),
-('prefere_interieur', 'Lors des canicules, je préfère rester à l’intérieur.'),
-('contre_reduction_voiture', 'Réduire l’espace pour voitures n’est pas souhaitable.'),
-('espaces_agreables', 'Espaces verts/bleus rendent la ville plus agréable.'),
-('proteger_acces_eau', 'Protéger les accès publics à l’eau est important.'),
-('municipalite_responsable', 'C’est à la municipalité de s’adapter, pas aux citoyens.')
-] %}
-<label>{{ q[1] }}</label><br>
-{% for i in range(1,6) %}
-<input type="radio" name="{{ q[0] }}" value="{{ i }}"> {{ i }}
-{% endfor %}
+<label>3.1. Valoriser et protéger les espaces verts en ville est important pour moi.</label><br>
+<input type="radio" name="valoriser_espaces_verts" value="1"> 1
+<input type="radio" name="valoriser_espaces_verts" value="2"> 2
+<input type="radio" name="valoriser_espaces_verts" value="3"> 3
+<input type="radio" name="valoriser_espaces_verts" value="4"> 4
+<input type="radio" name="valoriser_espaces_verts" value="5"> 5
 <br><br>
-{% endfor %}
+
+<label>3.2. Soutenir les politiques municipales visant à augmenter la végétation urbaine est une bonne chose.</label><br>
+<input type="radio" name="soutenir_politiques" value="1"> 1
+<input type="radio" name="soutenir_politiques" value="2"> 2
+<input type="radio" name="soutenir_politiques" value="3"> 3
+<input type="radio" name="soutenir_politiques" value="4"> 4
+<input type="radio" name="soutenir_politiques" value="5"> 5
+<br><br>
+
+<label>3.3. Lors des canicules, je préfère rester à l’intérieur plutôt que d’utiliser les parcs ou espaces extérieurs.</label><br>
+<input type="radio" name="prefere_interieur" value="1"> 1
+<input type="radio" name="prefere_interieur" value="2"> 2
+<input type="radio" name="prefere_interieur" value="3"> 3
+<input type="radio" name="prefere_interieur" value="4"> 4
+<input type="radio" name="prefere_interieur" value="5"> 5
+<br><br>
+
+<label>3.4. Réduire l'espace dédié à la voiture en ville pour favoriser les espaces verts et les transports actifs n'est pas une mesure souhaitable.</label><br>
+<input type="radio" name="contre_reduction_voiture" value="1"> 1
+<input type="radio" name="contre_reduction_voiture" value="2"> 2
+<input type="radio" name="contre_reduction_voiture" value="3"> 3
+<input type="radio" name="contre_reduction_voiture" value="4"> 4
+<input type="radio" name="contre_reduction_voiture" value="5"> 5
+<br><br>
+
+<label>3.5. Je crois que les espaces verts et bleus rendent la ville plus agréable à vivre.</label><br>
+<input type="radio" name="espaces_agreables" value="1"> 1
+<input type="radio" name="espaces_agreables" value="2"> 2
+<input type="radio" name="espaces_agreables" value="3"> 3
+<input type="radio" name="espaces_agreables" value="4"> 4
+<input type="radio" name="espaces_agreables" value="5"> 5
+<br><br>
+
+<label>3.6. Protéger et valoriser les accès publics à l’eau au sein de ma ville est un enjeu environnemental important.</label><br>
+<input type="radio" name="proteger_acces_eau" value="1"> 1
+<input type="radio" name="proteger_acces_eau" value="2"> 2
+<input type="radio" name="proteger_acces_eau" value="3"> 3
+<input type="radio" name="proteger_acces_eau" value="4"> 4
+<input type="radio" name="proteger_acces_eau" value="5"> 5
+<br><br>
+
+<label>3.7. C’est avant tout à la municipalité de mettre en place des solutions pour faire face à la chaleur en ville, pas aux citoyens.</label><br>
+<input type="radio" name="municipalite_responsable" value="1"> 1
+<input type="radio" name="municipalite_responsable" value="2"> 2
+<input type="radio" name="municipalite_responsable" value="3"> 3
+<input type="radio" name="municipalite_responsable" value="4"> 4
+<input type="radio" name="municipalite_responsable" value="5"> 5
+<br><br>
 </section>
 
 <!-- Section 4 -->
@@ -162,20 +275,53 @@
 <h2>Section 4 : Intentions environnementales</h2>
 <p>1 = Tout à fait en désaccord; 5 = Tout à fait d'accord</p>
 
-{% for q in [
-('intention_frequent_parcs', 'J’ai l’intention de fréquenter plus souvent les parcs.'),
-('intention_soutenir_initiatives', 'J’ai l’intention de soutenir les initiatives vertes.'),
-('pas_intention_s_informer', 'Je n’ai pas l’intention de m’informer davantage.'),
-('intention_comportements_eco', 'J’ai l’intention d’adopter des comportements plus écologiques.'),
-('pas_intention_transport_actif', 'Je n’ai pas l’intention d’utiliser plus les transports actifs.'),
-('motivation_si_municipalite', 'Je serais plus motivé si la municipalité s’engageait plus.')
-] %}
-<label>{{ q[1] }}</label><br>
-{% for i in range(1,6) %}
-<input type="radio" name="{{ q[0] }}" value="{{ i }}"> {{ i }}
-{% endfor %}
+<label>4.1. J'ai l'intention de fréquenter plus souvent les parcs et espaces verts de ma ville à l'avenir.</label><br>
+<input type="radio" name="intention_frequent_parcs" value="1"> 1
+<input type="radio" name="intention_frequent_parcs" value="2"> 2
+<input type="radio" name="intention_frequent_parcs" value="3"> 3
+<input type="radio" name="intention_frequent_parcs" value="4"> 4
+<input type="radio" name="intention_frequent_parcs" value="5"> 5
 <br><br>
-{% endfor %}
+
+<label>4.2. J'ai l'intention de soutenir (ex: par signature, vote, discussion) les initiatives visant à augmenter les espaces verts et les points d'eau dans ma ville.</label><br>
+<input type="radio" name="intention_soutenir_initiatives" value="1"> 1
+<input type="radio" name="intention_soutenir_initiatives" value="2"> 2
+<input type="radio" name="intention_soutenir_initiatives" value="3"> 3
+<input type="radio" name="intention_soutenir_initiatives" value="4"> 4
+<input type="radio" name="intention_soutenir_initiatives" value="5"> 5
+<br><br>
+
+<label>4.3. Je n'ai pas l'intention de m'informer davantage sur les solutions pour rendre ma ville plus résiliente à la chaleur.</label><br>
+<input type="radio" name="pas_intention_s_informer" value="1"> 1
+<input type="radio" name="pas_intention_s_informer" value="2"> 2
+<input type="radio" name="pas_intention_s_informer" value="3"> 3
+<input type="radio" name="pas_intention_s_informer" value="4"> 4
+<input type="radio" name="pas_intention_s_informer" value="5"> 5
+<br><br>
+
+<label>4.4. J'ai l'intention d'adopter des comportements plus respectueux de l'environnement dans ma vie quotidienne en ville (ex: réduire ma consommation, mieux trier mes déchets).</label><br>
+<input type="radio" name="intention_comportements_eco" value="1"> 1
+<input type="radio" name="intention_comportements_eco" value="2"> 2
+<input type="radio" name="intention_comportements_eco" value="3"> 3
+<input type="radio" name="intention_comportements_eco" value="4"> 4
+<input type="radio" name="intention_comportements_eco" value="5"> 5
+<br><br>
+
+<label>4.5. Je n'ai pas l'intention d'utiliser plus souvent des modes de transport actifs (marche, vélo) pour mes déplacements urbains.</label><br>
+<input type="radio" name="pas_intention_transport_actif" value="1"> 1
+<input type="radio" name="pas_intention_transport_actif" value="2"> 2
+<input type="radio" name="pas_intention_transport_actif" value="3"> 3
+<input type="radio" name="pas_intention_transport_actif" value="4"> 4
+<input type="radio" name="pas_intention_transport_actif" value="5"> 5
+<br><br>
+
+<label>4.6. Je serais plus motivé à poser des gestes en faveur de l’environnement en ville si je voyais que la municipalité s’engage davantage pour s’adapter aux vagues de chaleur.</label><br>
+<input type="radio" name="motivation_si_municipalite" value="1"> 1
+<input type="radio" name="motivation_si_municipalite" value="2"> 2
+<input type="radio" name="motivation_si_municipalite" value="3"> 3
+<input type="radio" name="motivation_si_municipalite" value="4"> 4
+<input type="radio" name="motivation_si_municipalite" value="5"> 5
+<br><br>
 </section>
 
 <!-- Section 5 -->
@@ -183,22 +329,68 @@
 <h2>Section 5 : Habitudes et gestes écologiques (12 derniers mois)</h2>
 <p>1=Jamais, 5=Très souvent</p>
 
-{% for q in [
-('freq_parcs', 'Fréquenté des parcs pour vous rafraîchir'),
-('activite_verdissement', 'Participé à une activité de verdissement'),
-('petition_contact', 'Signé une pétition ou contacté un élu'),
-('reduire_eau', 'Réduit votre consommation d’eau'),
-('transport_alternatif', 'Utilisé transport en commun, vélo, marche'),
-('compost', 'Composté vos matières organiques'),
-('refroidissement_passif', 'Favorisé refroidissement passif plutôt que climatisation')
-] %}
-<label>{{ q[1] }}</label><br>
-{% for i in range(1,6) %}
-<input type="radio" name="{{ q[0] }}" value="{{ i }}"> {{ i }}
-{% endfor %}
-<input type="checkbox" name="{{ q[0] }}_na" value="na"> Non applicable
+<label>● Fréquenté des parcs ou espaces verts pour vous détendre ou vous rafraîchir :</label><br>
+<input type="radio" name="freq_parcs" value="1"> 1
+<input type="radio" name="freq_parcs" value="2"> 2
+<input type="radio" name="freq_parcs" value="3"> 3
+<input type="radio" name="freq_parcs" value="4"> 4
+<input type="radio" name="freq_parcs" value="5"> 5
+<input type="checkbox" name="freq_parcs_na" value="na"> Non applicable
 <br><br>
-{% endfor %}
+
+<label>● Participé à une activité de verdissement ou de nettoyage dans votre quartier (ex: plantation, corvée) :</label><br>
+<input type="radio" name="activite_verdissement" value="1"> 1
+<input type="radio" name="activite_verdissement" value="2"> 2
+<input type="radio" name="activite_verdissement" value="3"> 3
+<input type="radio" name="activite_verdissement" value="4"> 4
+<input type="radio" name="activite_verdissement" value="5"> 5
+<input type="checkbox" name="activite_verdissement_na" value="na"> Non applicable
+<br><br>
+
+<label>● Signé une pétition ou contacté un élu concernant un enjeu environnemental urbain (ex: protection d'un espace vert, demande d'aménagement cyclable) :</label><br>
+<input type="radio" name="petition_contact" value="1"> 1
+<input type="radio" name="petition_contact" value="2"> 2
+<input type="radio" name="petition_contact" value="3"> 3
+<input type="radio" name="petition_contact" value="4"> 4
+<input type="radio" name="petition_contact" value="5"> 5
+<input type="checkbox" name="petition_contact_na" value="na"> Non applicable
+<br><br>
+
+<label>● Fournit des efforts conscients pour réduire votre consommation d'eau à la maison :</label><br>
+<input type="radio" name="reduire_eau" value="1"> 1
+<input type="radio" name="reduire_eau" value="2"> 2
+<input type="radio" name="reduire_eau" value="3"> 3
+<input type="radio" name="reduire_eau" value="4"> 4
+<input type="radio" name="reduire_eau" value="5"> 5
+<input type="checkbox" name="reduire_eau_na" value="na"> Non applicable
+<br><br>
+
+<label>● Utilisé le transport en commun, le vélo ou la marche pour des déplacements qui auraient pu être faits en voiture :</label><br>
+<input type="radio" name="transport_alternatif" value="1"> 1
+<input type="radio" name="transport_alternatif" value="2"> 2
+<input type="radio" name="transport_alternatif" value="3"> 3
+<input type="radio" name="transport_alternatif" value="4"> 4
+<input type="radio" name="transport_alternatif" value="5"> 5
+<input type="checkbox" name="transport_alternatif_na" value="na"> Non applicable
+<br><br>
+
+<label>● Composté vos matières organiques :</label><br>
+<input type="radio" name="compost" value="1"> 1
+<input type="radio" name="compost" value="2"> 2
+<input type="radio" name="compost" value="3"> 3
+<input type="radio" name="compost" value="4"> 4
+<input type="radio" name="compost" value="5"> 5
+<input type="checkbox" name="compost_na" value="na"> Non applicable (pas de service)
+<br><br>
+
+<label>● Favorisé des méthodes de refroidissement passives (qui n’utilise pas d’énergie) plutôt que la climatisation :</label><br>
+<input type="radio" name="refroidissement_passif" value="1"> 1
+<input type="radio" name="refroidissement_passif" value="2"> 2
+<input type="radio" name="refroidissement_passif" value="3"> 3
+<input type="radio" name="refroidissement_passif" value="4"> 4
+<input type="radio" name="refroidissement_passif" value="5"> 5
+<input type="checkbox" name="refroidissement_passif_na" value="na"> Non applicable (pas de service)
+<br><br>
 </section>
 
 <!-- Section 6 -->
