@@ -1,44 +1,52 @@
-import csv
 import os
+import requests # Import requests library
 from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
-# Define the path for the CSV file
-CSV_FILE = 'responses.csv'
+# --- Supabase Configuration ---
+# IMPORTANT: For production, use environment variables!
+SUPABASE_URL = "https://wlsggpanveasjrtnpuhs.supabase.co"
+SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indsc2dncGFudmVhc2pydG5wdWhzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQwNDI4MjQsImV4cCI6MjA1OTYxODgyNH0.qX-J-UnrA3u5IabOI36rJdoUN2cuRATFaF0dL1iN4og"
+SUPABASE_TABLE = "responses" # CHANGE THIS if your table name is different
 
-# Define the headers based on the form's 'name' attributes in index.html
-CSV_HEADERS = [
-    'genre', 'age', 'niveau_etude', 'risque_sante', 'preoccupation_temp',
-    'efficacite_arbres', 'efficacite_materiaux', 'priorite_env',
-    'impact_individuel', 'intention_energie', 'intention_transport',
-    'habitude_tri', 'habitude_eau', 'commentaires'
-]
+# Construct the API endpoint
+supabase_api_url = f"{SUPABASE_URL}/rest/v1/{SUPABASE_TABLE}"
+
+# Set headers for Supabase API
+supabase_headers = {
+    "apikey": SUPABASE_KEY,
+    "Authorization": f"Bearer {SUPABASE_KEY}",
+    "Content-Type": "application/json",
+    "Prefer": "return=minimal", # Don't return the inserted data
+}
+# --- End Supabase Configuration ---
+
 
 @app.route("/", methods=["GET", "POST"])
 def questionnaire():
     if request.method == "POST":
-        # Get form data
-        responses = request.form
+        # Get form data as a dictionary
+        responses_dict = request.form.to_dict()
 
-        # Prepare data row for CSV
-        data_row = [responses.get(header, '') for header in CSV_HEADERS] # Use .get for safety
-
-        # Check if file exists to write headers
-        file_exists = os.path.isfile(CSV_FILE)
-
-        # Append data to CSV
+        # --- Send data to Supabase ---
         try:
-            with open(CSV_FILE, 'a', newline='', encoding='utf-8') as csvfile:
-                writer = csv.writer(csvfile)
-                if not file_exists or os.path.getsize(CSV_FILE) == 0:
-                    writer.writerow(CSV_HEADERS) # Write header only if file is new or empty
-                writer.writerow(data_row)
-            # Redirect to a 'thank you' page or show a message
+            # Make the POST request to Supabase
+            response = requests.post(
+                supabase_api_url,
+                headers=supabase_headers,
+                json=responses_dict # Send data as JSON
+            )
+
+            # Check for errors
+            response.raise_for_status() # Raises an exception for bad status codes (4xx or 5xx)
+
+            # Redirect to a 'thank you' page on success
             return redirect(url_for('merci'))
-        except IOError as e:
-            # Handle potential file writing errors
-            print(f"Error writing to CSV: {e}")
+
+        except requests.exceptions.RequestException as e:
+            # Handle potential network or Supabase errors
+            print(f"Error sending data to Supabase: {e}")
             # You might want to render an error page or message here
             return "Une erreur est survenue lors de l'enregistrement de vos réponses.", 500
 
