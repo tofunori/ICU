@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: questionnaire-flask
+    env: python
+    buildCommand: ""
+    startCommand: gunicorn template_questionnaire:app
+    plan: free

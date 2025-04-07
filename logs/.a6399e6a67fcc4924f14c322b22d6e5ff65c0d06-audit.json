@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "d:\\UQTR\\Hiver 2025\\Analyse du paysage\\TP5\\logs\\.a6399e6a67fcc4924f14c322b22d6e5ff65c0d06-audit.json",
+    "files": [
+        {
+            "date": 1744035181385,
+            "name": "d:\\UQTR\\Hiver 2025\\Analyse du paysage\\TP5\\logs\\mcp-puppeteer-2025-04-07.log",
+            "hash": "58ab5953a69003e7be31e194a684b3dd54de5130fe5d128af9205540f53c1c05"
+        }
+    ],
+    "hashType": "sha256"
+}

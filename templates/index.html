@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionnaire : Chaleur Urbaine</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Questionnaire : Perception de la Chaleur Urbaine et Comportements Environnementaux</h1>
+
+    <form id="questionnaireForm" method="POST">
+
+        <!-- Section 1: Informations générales -->
+        <section>
+            <h2>Informations générales</h2>
+            <label for="genre">Genre :</label>
+            <select id="genre" name="genre">
+                <option value="">Choisir...</option>
+                <option value="homme">Homme</option>
+                <option value="femme">Femme</option>
+                <option value="autre">Autre</option>
+                <option value="non_precise">Ne souhaite pas préciser</option>
+            </select><br><br>
+
+            <label for="age">Tranche d'âge :</label>
+            <select id="age" name="age">
+                <option value="">Choisir...</option>
+                <option value="18-25">18-25 ans</option>
+                <option value="26-35">26-35 ans</option>
+                <option value="36-45">36-45 ans</option>
+                <option value="46-55">46-55 ans</option>
+                <option value="56-65">56-65 ans</option>
+                <option value="65+">65 ans et plus</option>
+            </select><br><br>
+
+            <label for="niveau_etude">Niveau d'études le plus élevé :</label>
+            <select id="niveau_etude" name="niveau_etude">
+                <option value="">Choisir...</option>
+                <option value="secondaire">Secondaire</option>
+                <option value="collegial">Collégial</option>
+                <option value="universitaire_1er">Universitaire 1er cycle</option>
+                <option value="universitaire_2e">Universitaire 2e cycle</option>
+                <option value="universitaire_3e">Universitaire 3e cycle</option>
+                <option value="autre">Autre</option>
+            </select><br><br>
+        </section>
+
+        <!-- Section 2: Perception du risque (Échelle de Likert) -->
+        <section>
+            <h2>Perception du risque lié à la chaleur urbaine</h2>
+            <p>Indiquez votre degré d'accord avec les affirmations suivantes (1 = Pas du tout d'accord, 5 = Tout à fait d'accord) :</p>
+            <label>La chaleur excessive en ville représente un risque important pour ma santé.</label><br>
+            <input type="radio" name="risque_sante" value="1"> 1
+            <input type="radio" name="risque_sante" value="2"> 2
+            <input type="radio" name="risque_sante" value="3"> 3
+            <input type="radio" name="risque_sante" value="4"> 4
+            <input type="radio" name="risque_sante" value="5"> 5 <br><br>
+
+            <label>Je suis préoccupé(e) par l'augmentation des températures en milieu urbain.</label><br>
+            <input type="radio" name="preoccupation_temp" value="1"> 1
+            <input type="radio" name="preoccupation_temp" value="2"> 2
+            <input type="radio" name="preoccupation_temp" value="3"> 3
+            <input type="radio" name="preoccupation_temp" value="4"> 4
+            <input type="radio" name="preoccupation_temp" value="5"> 5 <br><br>
+        </section>
+
+        <!-- Section 3: Efficacité des stratégies (Échelle de Likert) -->
+        <section>
+            <h2>Efficacité perçue des stratégies d'adaptation</h2>
+             <p>Évaluez l'efficacité des stratégies suivantes pour réduire l'impact de la chaleur urbaine (1 = Pas du tout efficace, 5 = Très efficace) :</p>
+            <label>Augmenter le nombre d'arbres et d'espaces verts.</label><br>
+            <input type="radio" name="efficacite_arbres" value="1"> 1
+            <input type="radio" name="efficacite_arbres" value="2"> 2
+            <input type="radio" name="efficacite_arbres" value="3"> 3
+            <input type="radio" name="efficacite_arbres" value="4"> 4
+            <input type="radio" name="efficacite_arbres" value="5"> 5 <br><br>
+
+            <label>Utiliser des matériaux de construction clairs pour les bâtiments et les routes.</label><br>
+            <input type="radio" name="efficacite_materiaux" value="1"> 1
+            <input type="radio" name="efficacite_materiaux" value="2"> 2
+            <input type="radio" name="efficacite_materiaux" value="3"> 3
+            <input type="radio" name="efficacite_materiaux" value="4"> 4
+            <input type="radio" name="efficacite_materiaux" value="5"> 5 <br><br>
+        </section>
+
+        <!-- Section 4: Perspective environnementale (Échelle de Likert) -->
+        <section>
+            <h2>Perspective environnementale générale</h2>
+            <p>Indiquez votre degré d'accord avec les affirmations suivantes (1 = Pas du tout d'accord, 5 = Tout à fait d'accord) :</p>
+            <label>La protection de l'environnement est une priorité importante.</label><br>
+            <input type="radio" name="priorite_env" value="1"> 1
+            <input type="radio" name="priorite_env" value="2"> 2
+            <input type="radio" name="priorite_env" value="3"> 3
+            <input type="radio" name="priorite_env" value="4"> 4
+            <input type="radio" name="priorite_env" value="5"> 5 <br><br>
+
+            <label>Les actions individuelles ont un impact significatif sur l'environnement.</label><br>
+            <input type="radio" name="impact_individuel" value="1"> 1
+            <input type="radio" name="impact_individuel" value="2"> 2
+            <input type="radio" name="impact_individuel" value="3"> 3
+            <input type="radio" name="impact_individuel" value="4"> 4
+            <input type="radio" name="impact_individuel" value="5"> 5 <br><br>
+        </section>
+
+        <!-- Section 5: Intentions écologiques (Échelle de Likert) -->
+        <section>
+            <h2>Intentions de comportements écologiques</h2>
+            <p>Indiquez votre intention d'adopter les comportements suivants dans les prochains mois (1 = Très improbable, 5 = Très probable) :</p>
+            <label>Réduire ma consommation d'énergie à la maison.</label><br>
+            <input type="radio" name="intention_energie" value="1"> 1
+            <input type="radio" name="intention_energie" value="2"> 2
+            <input type="radio" name="intention_energie" value="3"> 3
+            <input type="radio" name="intention_energie" value="4"> 4
+            <input type="radio" name="intention_energie" value="5"> 5 <br><br>
+
+            <label>Utiliser davantage les transports en commun ou le vélo.</label><br>
+            <input type="radio" name="intention_transport" value="1"> 1
+            <input type="radio" name="intention_transport" value="2"> 2
+            <input type="radio" name="intention_transport" value="3"> 3
+            <input type="radio" name="intention_transport" value="4"> 4
+            <input type="radio" name="intention_transport" value="5"> 5 <br><br>
+        </section>
+
+        <!-- Section 6: Habitudes écologiques (Échelle de fréquence) -->
+        <section>
+            <h2>Habitudes écologiques actuelles</h2>
+            <p>À quelle fréquence adoptez-vous les comportements suivants ? (Jamais, Rarement, Parfois, Souvent, Toujours)</p>
+            <label>Je trie mes déchets pour le recyclage.</label><br>
+            <select name="habitude_tri">
+                <option value="">Choisir...</option>
+                <option value="jamais">Jamais</option>
+                <option value="rarement">Rarement</option>
+                <option value="parfois">Parfois</option>
+                <option value="souvent">Souvent</option>
+                <option value="toujours">Toujours</option>
+            </select><br><br>
+
+            <label>J'essaie de limiter ma consommation d'eau.</label><br>
+             <select name="habitude_eau">
+                <option value="">Choisir...</option>
+                <option value="jamais">Jamais</option>
+                <option value="rarement">Rarement</option>
+                <option value="parfois">Parfois</option>
+                <option value="souvent">Souvent</option>
+                <option value="toujours">Toujours</option>
+            </select><br><br>
+        </section>
+
+        <!-- Section 7: Commentaires libres -->
+        <section>
+            <h2>Commentaires</h2>
+            <label for="commentaires">Avez-vous des commentaires ou suggestions supplémentaires concernant la chaleur urbaine ou les comportements environnementaux ?</label><br>
+            <textarea id="commentaires" name="commentaires" rows="4" cols="50"></textarea>
+        </section>
+
+        <button type="submit">Soumettre le questionnaire</button>
+
+    </form>
+
+    <script src="script.js"></script>
+</body>
+</html>
