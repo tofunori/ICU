@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-<div class="introduction" style="margin-bottom: 2em; padding: 1em; border: 1px solid #ccc; background-color: #f9f9f9; border-radius: 5px;">
+<div class="introduction">
     <h2>Introduction et Consentement</h2>
     <p>Bonjour,</p>
     <p>Nous sommes une équipe d'étudiant(e)s de l'Université du Québec à Trois-Rivières (UQTR) dans le cadre du cours "Analyse du Paysage". Nous menons une étude sur la perception de la chaleur estivale en milieu urbain et les stratégies mises en place par les résident(e)s pour y faire face, ainsi que le lien potentiel avec les attitudes et comportements environnementaux.</p>
@@ -41,10 +41,22 @@
 </select><br><br>
 
 <label>Genre :</label><br>
-<input type="radio" name="genre" value="femme"> Femme
-<input type="radio" name="genre" value="homme"> Homme
-<input type="radio" name="genre" value="autre"> Autre (préciser ci-dessous)<br>
-<input type="radio" name="genre" value="nopref"> Je préfère ne pas répondre<br>
+<div class="radio-option">
+  <input type="radio" name="genre" value="femme" id="genre_femme">
+  <label for="genre_femme">Femme</label>
+</div>
+<div class="radio-option">
+  <input type="radio" name="genre" value="homme" id="genre_homme">
+  <label for="genre_homme">Homme</label>
+</div>
+<div class="radio-option">
+  <input type="radio" name="genre" value="autre" id="genre_autre_radio">
+  <label for="genre_autre_radio">Autre (préciser ci-dessous)</label>
+</div>
+<div class="radio-option">
+  <input type="radio" name="genre" value="nopref" id="genre_nopref">
+  <label for="genre_nopref">Je préfère ne pas répondre</label>
+</div>
 <input type="text" name="genre_autre" placeholder="Précisez si autre"><br><br>
 
 <label>Niveau d'études :</label><br>
@@ -87,9 +99,15 @@
 </select><br><br>
 
 <label>Utilisez-vous la climatisation ?</label><br>
-<input type="radio" name="climatisation" value="oui"> Oui
-<input type="radio" name="climatisation" value="non"> Non
-<br><br>
+<div class="radio-option">
+  <input type="radio" name="climatisation" value="oui" id="clim_oui">
+  <label for="clim_oui">Oui</label>
+</div>
+<div class="radio-option">
+  <input type="radio" name="climatisation" value="non" id="clim_non">
+  <label for="clim_non">Non</label>
+</div>
+<br>
 </section>
 
 <!-- Section 1 -->
@@ -98,52 +116,154 @@
 <p>1 = Tout à fait en désaccord; 5 = Tout à fait d'accord</p>
 
 <label>1.1. Les vagues de chaleur que nous connaissons deviennent de plus en plus intenses.</label><br>
-<input type="radio" name="vagues_intenses" value="1"> 1
-<input type="radio" name="vagues_intenses" value="2"> 2
-<input type="radio" name="vagues_intenses" value="3"> 3
-<input type="radio" name="vagues_intenses" value="4"> 4
-<input type="radio" name="vagues_intenses" value="5"> 5
-<br><br>
+<div class="likert-scale">
+  <div class="radio-option">
+    <input type="radio" name="vagues_intenses" value="1" id="vagues_intenses_1">
+    <label for="vagues_intenses_1"><span>1</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="vagues_intenses" value="2" id="vagues_intenses_2">
+    <label for="vagues_intenses_2"><span>2</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="vagues_intenses" value="3" id="vagues_intenses_3">
+    <label for="vagues_intenses_3"><span>3</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="vagues_intenses" value="4" id="vagues_intenses_4">
+    <label for="vagues_intenses_4"><span>4</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="vagues_intenses" value="5" id="vagues_intenses_5">
+    <label for="vagues_intenses_5"><span>5</span></label>
+  </div>
+</div>
+<br>
 
 <label>1.2. Les conséquences des vagues de chaleur sur la santé des gens dans ma ville sont graves.</label><br>
-<input type="radio" name="conseq_sante" value="1"> 1
-<input type="radio" name="conseq_sante" value="2"> 2
-<input type="radio" name="conseq_sante" value="3"> 3
-<input type="radio" name="conseq_sante" value="4"> 4
-<input type="radio" name="conseq_sante" value="5"> 5
-<br><br>
+<div class="likert-scale">
+  <div class="radio-option">
+    <input type="radio" name="conseq_sante" value="1" id="conseq_sante_1">
+    <label for="conseq_sante_1"><span>1</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="conseq_sante" value="2" id="conseq_sante_2">
+    <label for="conseq_sante_2"><span>2</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="conseq_sante" value="3" id="conseq_sante_3">
+    <label for="conseq_sante_3"><span>3</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="conseq_sante" value="4" id="conseq_sante_4">
+    <label for="conseq_sante_4"><span>4</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="conseq_sante" value="5" id="conseq_sante_5">
+    <label for="conseq_sante_5"><span>5</span></label>
+  </div>
+</div>
+<br>
 
 <label>1.3. Les vagues de chaleur représentent une menace mineure pour l'environnement urbain (ex: stress sur les infrastructures, la végétation).</label><br>
-<input type="radio" name="menace_env" value="1"> 1
-<input type="radio" name="menace_env" value="2"> 2
-<input type="radio" name="menace_env" value="3"> 3
-<input type="radio" name="menace_env" value="4"> 4
-<input type="radio" name="menace_env" value="5"> 5
-<br><br>
+<div class="likert-scale">
+  <div class="radio-option">
+    <input type="radio" name="menace_env" value="1" id="menace_env_1">
+    <label for="menace_env_1"><span>1</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="menace_env" value="2" id="menace_env_2">
+    <label for="menace_env_2"><span>2</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="menace_env" value="3" id="menace_env_3">
+    <label for="menace_env_3"><span>3</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="menace_env" value="4" id="menace_env_4">
+    <label for="menace_env_4"><span>4</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="menace_env" value="5" id="menace_env_5">
+    <label for="menace_env_5"><span>5</span></label>
+  </div>
+</div>
+<br>
 
 <label>1.4. Je me sens personnellement vulnérable aux effets négatifs des vagues de chaleur.</label><br>
-<input type="radio" name="vulnerable" value="1"> 1
-<input type="radio" name="vulnerable" value="2"> 2
-<input type="radio" name="vulnerable" value="3"> 3
-<input type="radio" name="vulnerable" value="4"> 4
-<input type="radio" name="vulnerable" value="5"> 5
-<br><br>
+<div class="likert-scale">
+  <div class="radio-option">
+    <input type="radio" name="vulnerable" value="1" id="vulnerable_1">
+    <label for="vulnerable_1"><span>1</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="vulnerable" value="2" id="vulnerable_2">
+    <label for="vulnerable_2"><span>2</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="vulnerable" value="3" id="vulnerable_3">
+    <label for="vulnerable_3"><span>3</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="vulnerable" value="4" id="vulnerable_4">
+    <label for="vulnerable_4"><span>4</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="vulnerable" value="5" id="vulnerable_5">
+    <label for="vulnerable_5"><span>5</span></label>
+  </div>
+</div>
+<br>
 
 <label>1.5. Mon logement actuel me protège bien de la chaleur intense en été.</label><br>
-<input type="radio" name="logement_protection" value="1"> 1
-<input type="radio" name="logement_protection" value="2"> 2
-<input type="radio" name="logement_protection" value="3"> 3
-<input type="radio" name="logement_protection" value="4"> 4
-<input type="radio" name="logement_protection" value="5"> 5
-<br><br>
+<div class="likert-scale">
+  <div class="radio-option">
+    <input type="radio" name="logement_protection" value="1" id="logement_protection_1">
+    <label for="logement_protection_1"><span>1</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="logement_protection" value="2" id="logement_protection_2">
+    <label for="logement_protection_2"><span>2</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="logement_protection" value="3" id="logement_protection_3">
+    <label for="logement_protection_3"><span>3</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="logement_protection" value="4" id="logement_protection_4">
+    <label for="logement_protection_4"><span>4</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="logement_protection" value="5" id="logement_protection_5">
+    <label for="logement_protection_5"><span>5</span></label>
+  </div>
+</div>
+<br>
 
 <label>1.6. Je crains que les futures vagues de chaleur affectent négativement ma qualité de vie.</label><br>
-<input type="radio" name="crainte_futur" value="1"> 1
-<input type="radio" name="crainte_futur" value="2"> 2
-<input type="radio" name="crainte_futur" value="3"> 3
-<input type="radio" name="crainte_futur" value="4"> 4
-<input type="radio" name="crainte_futur" value="5"> 5
-<br><br>
+<div class="likert-scale">
+  <div class="radio-option">
+    <input type="radio" name="crainte_futur" value="1" id="crainte_futur_1">
+    <label for="crainte_futur_1"><span>1</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="crainte_futur" value="2" id="crainte_futur_2">
+    <label for="crainte_futur_2"><span>2</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="crainte_futur" value="3" id="crainte_futur_3">
+    <label for="crainte_futur_3"><span>3</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="crainte_futur" value="4" id="crainte_futur_4">
+    <label for="crainte_futur_4"><span>4</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="crainte_futur" value="5" id="crainte_futur_5">
+    <label for="crainte_futur_5"><span>5</span></label>
+  </div>
+</div>
+<br>
 </section>
 
 <!-- Section 2 -->
@@ -152,60 +272,179 @@
 <p>1 = Tout à fait en désaccord; 5 = Tout à fait d'accord</p>
 
 <label>2.1. Fréquenter les parcs et les espaces verts est une stratégie efficace pour réduire mon inconfort personnel pendant les canicules.</label><br>
-<input type="radio" name="parcs_efficace" value="1"> 1
-<input type="radio" name="parcs_efficace" value="2"> 2
-<input type="radio" name="parcs_efficace" value="3"> 3
-<input type="radio" name="parcs_efficace" value="4"> 4
-<input type="radio" name="parcs_efficace" value="5"> 5
-<br><br>
+<div class="likert-scale">
+  <div class="radio-option">
+    <input type="radio" name="parcs_efficace" value="1" id="parcs_efficace_1">
+    <label for="parcs_efficace_1"><span>1</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="parcs_efficace" value="2" id="parcs_efficace_2">
+    <label for="parcs_efficace_2"><span>2</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="parcs_efficace" value="3" id="parcs_efficace_3">
+    <label for="parcs_efficace_3"><span>3</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="parcs_efficace" value="4" id="parcs_efficace_4">
+    <label for="parcs_efficace_4"><span>4</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="parcs_efficace" value="5" id="parcs_efficace_5">
+    <label for="parcs_efficace_5"><span>5</span></label>
+  </div>
+</div>
+<br>
 
 <label>2.2. Avoir accès à des points d'eau publics (piscines, jeux d'eau, plage) est un moyen efficace de mieux supporter la chaleur.</label><br>
-<input type="radio" name="eau_publique" value="1"> 1
-<input type="radio" name="eau_publique" value="2"> 2
-<input type="radio" name="eau_publique" value="3"> 3
-<input type="radio" name="eau_publique" value="4"> 4
-<input type="radio" name="eau_publique" value="5"> 5
-<br><br>
+<div class="likert-scale">
+  <div class="radio-option">
+    <input type="radio" name="eau_publique" value="1" id="eau_publique_1">
+    <label for="eau_publique_1"><span>1</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="eau_publique" value="2" id="eau_publique_2">
+    <label for="eau_publique_2"><span>2</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="eau_publique" value="3" id="eau_publique_3">
+    <label for="eau_publique_3"><span>3</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="eau_publique" value="4" id="eau_publique_4">
+    <label for="eau_publique_4"><span>4</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="eau_publique" value="5" id="eau_publique_5">
+    <label for="eau_publique_5"><span>5</span></label>
+  </div>
+</div>
+<br>
 
 <label>2.3. Je trouve inutile l’augmentation du nombre d'arbres et d'espaces verts en ville pour réduire la température globale.</label><br>
-<input type="radio" name="arbres_inutile" value="1"> 1
-<input type="radio" name="arbres_inutile" value="2"> 2
-<input type="radio" name="arbres_inutile" value="3"> 3
-<input type="radio" name="arbres_inutile" value="4"> 4
-<input type="radio" name="arbres_inutile" value="5"> 5
-<br><br>
+<div class="likert-scale">
+  <div class="radio-option">
+    <input type="radio" name="arbres_inutile" value="1" id="arbres_inutile_1">
+    <label for="arbres_inutile_1"><span>1</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="arbres_inutile" value="2" id="arbres_inutile_2">
+    <label for="arbres_inutile_2"><span>2</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="arbres_inutile" value="3" id="arbres_inutile_3">
+    <label for="arbres_inutile_3"><span>3</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="arbres_inutile" value="4" id="arbres_inutile_4">
+    <label for="arbres_inutile_4"><span>4</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="arbres_inutile" value="5" id="arbres_inutile_5">
+    <label for="arbres_inutile_5"><span>5</span></label>
+  </div>
+</div>
+<br>
 
 <label>2.4. Je me sens capable de trouver et d'utiliser des endroits frais (parcs, lieux climatisés) dans ma ville pendant une canicule.</label><br>
-<input type="radio" name="trouver_endroits_frais" value="1"> 1
-<input type="radio" name="trouver_endroits_frais" value="2"> 2
-<input type="radio" name="trouver_endroits_frais" value="3"> 3
-<input type="radio" name="trouver_endroits_frais" value="4"> 4
-<input type="radio" name="trouver_endroits_frais" value="5"> 5
-<br><br>
+<div class="likert-scale">
+  <div class="radio-option">
+    <input type="radio" name="trouver_endroits_frais" value="1" id="trouver_endroits_frais_1">
+    <label for="trouver_endroits_frais_1"><span>1</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="trouver_endroits_frais" value="2" id="trouver_endroits_frais_2">
+    <label for="trouver_endroits_frais_2"><span>2</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="trouver_endroits_frais" value="3" id="trouver_endroits_frais_3">
+    <label for="trouver_endroits_frais_3"><span>3</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="trouver_endroits_frais" value="4" id="trouver_endroits_frais_4">
+    <label for="trouver_endroits_frais_4"><span>4</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="trouver_endroits_frais" value="5" id="trouver_endroits_frais_5">
+    <label for="trouver_endroits_frais_5"><span>5</span></label>
+  </div>
+</div>
+<br>
 
 <label>2.5. Je trouve parfois difficile d’adopter certains comportements pour mieux gérer la chaleur (ex : adapter mon horaire, boire davantage d’eau).</label><br>
-<input type="radio" name="difficile_comportements" value="1"> 1
-<input type="radio" name="difficile_comportements" value="2"> 2
-<input type="radio" name="difficile_comportements" value="3"> 3
-<input type="radio" name="difficile_comportements" value="4"> 4
-<input type="radio" name="difficile_comportements" value="5"> 5
-<br><br>
+<div class="likert-scale">
+  <div class="radio-option">
+    <input type="radio" name="difficile_comportements" value="1" id="difficile_comportements_1">
+    <label for="difficile_comportements_1"><span>1</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="difficile_comportements" value="2" id="difficile_comportements_2">
+    <label for="difficile_comportements_2"><span>2</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="difficile_comportements" value="3" id="difficile_comportements_3">
+    <label for="difficile_comportements_3"><span>3</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="difficile_comportements" value="4" id="difficile_comportements_4">
+    <label for="difficile_comportements_4"><span>4</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="difficile_comportements" value="5" id="difficile_comportements_5">
+    <label for="difficile_comportements_5"><span>5</span></label>
+  </div>
+</div>
+<br>
 
 <label>2.6. Il m'est facile d'accéder à des parcs ou espaces verts de qualité près de chez moi.</label><br>
-<input type="radio" name="acces_parcs" value="1"> 1
-<input type="radio" name="acces_parcs" value="2"> 2
-<input type="radio" name="acces_parcs" value="3"> 3
-<input type="radio" name="acces_parcs" value="4"> 4
-<input type="radio" name="acces_parcs" value="5"> 5
-<br><br>
+<div class="likert-scale">
+  <div class="radio-option">
+    <input type="radio" name="acces_parcs" value="1" id="acces_parcs_1">
+    <label for="acces_parcs_1"><span>1</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="acces_parcs" value="2" id="acces_parcs_2">
+    <label for="acces_parcs_2"><span>2</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="acces_parcs" value="3" id="acces_parcs_3">
+    <label for="acces_parcs_3"><span>3</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="acces_parcs" value="4" id="acces_parcs_4">
+    <label for="acces_parcs_4"><span>4</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="acces_parcs" value="5" id="acces_parcs_5">
+    <label for="acces_parcs_5"><span>5</span></label>
+  </div>
+</div>
+<br>
 
 <label>2.7. Même lorsqu’il fait très chaud, je me sens capable d’utiliser des modes de transport actifs (marche, vélo) pour mes déplacements.</label><br>
-<input type="radio" name="transport_chaud" value="1"> 1
-<input type="radio" name="transport_chaud" value="2"> 2
-<input type="radio" name="transport_chaud" value="3"> 3
-<input type="radio" name="transport_chaud" value="4"> 4
-<input type="radio" name="transport_chaud" value="5"> 5
-<br><br>
+<div class="likert-scale">
+  <div class="radio-option">
+    <input type="radio" name="transport_chaud" value="1" id="transport_chaud_1">
+    <label for="transport_chaud_1"><span>1</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="transport_chaud" value="2" id="transport_chaud_2">
+    <label for="transport_chaud_2"><span>2</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="transport_chaud" value="3" id="transport_chaud_3">
+    <label for="transport_chaud_3"><span>3</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="transport_chaud" value="4" id="transport_chaud_4">
+    <label for="transport_chaud_4"><span>4</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="transport_chaud" value="5" id="transport_chaud_5">
+    <label for="transport_chaud_5"><span>5</span></label>
+  </div>
+</div>
+<br>
 </section>
 
 <!-- Section 3 -->
@@ -214,60 +453,179 @@
 <p>1 = Tout à fait en désaccord; 5 = Tout à fait d'accord</p>
 
 <label>3.1. Valoriser et protéger les espaces verts en ville est important pour moi.</label><br>
-<input type="radio" name="valoriser_espaces_verts" value="1"> 1
-<input type="radio" name="valoriser_espaces_verts" value="2"> 2
-<input type="radio" name="valoriser_espaces_verts" value="3"> 3
-<input type="radio" name="valoriser_espaces_verts" value="4"> 4
-<input type="radio" name="valoriser_espaces_verts" value="5"> 5
-<br><br>
+<div class="likert-scale">
+  <div class="radio-option">
+    <input type="radio" name="valoriser_espaces_verts" value="1" id="valoriser_espaces_verts_1">
+    <label for="valoriser_espaces_verts_1"><span>1</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="valoriser_espaces_verts" value="2" id="valoriser_espaces_verts_2">
+    <label for="valoriser_espaces_verts_2"><span>2</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="valoriser_espaces_verts" value="3" id="valoriser_espaces_verts_3">
+    <label for="valoriser_espaces_verts_3"><span>3</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="valoriser_espaces_verts" value="4" id="valoriser_espaces_verts_4">
+    <label for="valoriser_espaces_verts_4"><span>4</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="valoriser_espaces_verts" value="5" id="valoriser_espaces_verts_5">
+    <label for="valoriser_espaces_verts_5"><span>5</span></label>
+  </div>
+</div>
+<br>
 
 <label>3.2. Soutenir les politiques municipales visant à augmenter la végétation urbaine est une bonne chose.</label><br>
-<input type="radio" name="soutenir_politiques" value="1"> 1
-<input type="radio" name="soutenir_politiques" value="2"> 2
-<input type="radio" name="soutenir_politiques" value="3"> 3
-<input type="radio" name="soutenir_politiques" value="4"> 4
-<input type="radio" name="soutenir_politiques" value="5"> 5
-<br><br>
+<div class="likert-scale">
+  <div class="radio-option">
+    <input type="radio" name="soutenir_politiques" value="1" id="soutenir_politiques_1">
+    <label for="soutenir_politiques_1"><span>1</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="soutenir_politiques" value="2" id="soutenir_politiques_2">
+    <label for="soutenir_politiques_2"><span>2</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="soutenir_politiques" value="3" id="soutenir_politiques_3">
+    <label for="soutenir_politiques_3"><span>3</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="soutenir_politiques" value="4" id="soutenir_politiques_4">
+    <label for="soutenir_politiques_4"><span>4</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="soutenir_politiques" value="5" id="soutenir_politiques_5">
+    <label for="soutenir_politiques_5"><span>5</span></label>
+  </div>
+</div>
+<br>
 
 <label>3.3. Lors des canicules, je préfère rester à l’intérieur plutôt que d’utiliser les parcs ou espaces extérieurs.</label><br>
-<input type="radio" name="prefere_interieur" value="1"> 1
-<input type="radio" name="prefere_interieur" value="2"> 2
-<input type="radio" name="prefere_interieur" value="3"> 3
-<input type="radio" name="prefere_interieur" value="4"> 4
-<input type="radio" name="prefere_interieur" value="5"> 5
-<br><br>
+<div class="likert-scale">
+  <div class="radio-option">
+    <input type="radio" name="prefere_interieur" value="1" id="prefere_interieur_1">
+    <label for="prefere_interieur_1"><span>1</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="prefere_interieur" value="2" id="prefere_interieur_2">
+    <label for="prefere_interieur_2"><span>2</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="prefere_interieur" value="3" id="prefere_interieur_3">
+    <label for="prefere_interieur_3"><span>3</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="prefere_interieur" value="4" id="prefere_interieur_4">
+    <label for="prefere_interieur_4"><span>4</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="prefere_interieur" value="5" id="prefere_interieur_5">
+    <label for="prefere_interieur_5"><span>5</span></label>
+  </div>
+</div>
+<br>
 
 <label>3.4. Réduire l'espace dédié à la voiture en ville pour favoriser les espaces verts et les transports actifs n'est pas une mesure souhaitable.</label><br>
-<input type="radio" name="contre_reduction_voiture" value="1"> 1
-<input type="radio" name="contre_reduction_voiture" value="2"> 2
-<input type="radio" name="contre_reduction_voiture" value="3"> 3
-<input type="radio" name="contre_reduction_voiture" value="4"> 4
-<input type="radio" name="contre_reduction_voiture" value="5"> 5
-<br><br>
+<div class="likert-scale">
+  <div class="radio-option">
+    <input type="radio" name="contre_reduction_voiture" value="1" id="contre_reduction_voiture_1">
+    <label for="contre_reduction_voiture_1"><span>1</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="contre_reduction_voiture" value="2" id="contre_reduction_voiture_2">
+    <label for="contre_reduction_voiture_2"><span>2</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="contre_reduction_voiture" value="3" id="contre_reduction_voiture_3">
+    <label for="contre_reduction_voiture_3"><span>3</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="contre_reduction_voiture" value="4" id="contre_reduction_voiture_4">
+    <label for="contre_reduction_voiture_4"><span>4</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="contre_reduction_voiture" value="5" id="contre_reduction_voiture_5">
+    <label for="contre_reduction_voiture_5"><span>5</span></label>
+  </div>
+</div>
+<br>
 
 <label>3.5. Je crois que les espaces verts et bleus rendent la ville plus agréable à vivre.</label><br>
-<input type="radio" name="espaces_agreables" value="1"> 1
-<input type="radio" name="espaces_agreables" value="2"> 2
-<input type="radio" name="espaces_agreables" value="3"> 3
-<input type="radio" name="espaces_agreables" value="4"> 4
-<input type="radio" name="espaces_agreables" value="5"> 5
-<br><br>
+<div class="likert-scale">
+  <div class="radio-option">
+    <input type="radio" name="espaces_agreables" value="1" id="espaces_agreables_1">
+    <label for="espaces_agreables_1"><span>1</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="espaces_agreables" value="2" id="espaces_agreables_2">
+    <label for="espaces_agreables_2"><span>2</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="espaces_agreables" value="3" id="espaces_agreables_3">
+    <label for="espaces_agreables_3"><span>3</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="espaces_agreables" value="4" id="espaces_agreables_4">
+    <label for="espaces_agreables_4"><span>4</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="espaces_agreables" value="5" id="espaces_agreables_5">
+    <label for="espaces_agreables_5"><span>5</span></label>
+  </div>
+</div>
+<br>
 
 <label>3.6. Protéger et valoriser les accès publics à l’eau au sein de ma ville est un enjeu environnemental important.</label><br>
-<input type="radio" name="proteger_acces_eau" value="1"> 1
-<input type="radio" name="proteger_acces_eau" value="2"> 2
-<input type="radio" name="proteger_acces_eau" value="3"> 3
-<input type="radio" name="proteger_acces_eau" value="4"> 4
-<input type="radio" name="proteger_acces_eau" value="5"> 5
-<br><br>
+<div class="likert-scale">
+  <div class="radio-option">
+    <input type="radio" name="proteger_acces_eau" value="1" id="proteger_acces_eau_1">
+    <label for="proteger_acces_eau_1"><span>1</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="proteger_acces_eau" value="2" id="proteger_acces_eau_2">
+    <label for="proteger_acces_eau_2"><span>2</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="proteger_acces_eau" value="3" id="proteger_acces_eau_3">
+    <label for="proteger_acces_eau_3"><span>3</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="proteger_acces_eau" value="4" id="proteger_acces_eau_4">
+    <label for="proteger_acces_eau_4"><span>4</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="proteger_acces_eau" value="5" id="proteger_acces_eau_5">
+    <label for="proteger_acces_eau_5"><span>5</span></label>
+  </div>
+</div>
+<br>
 
 <label>3.7. C’est avant tout à la municipalité de mettre en place des solutions pour faire face à la chaleur en ville, pas aux citoyens.</label><br>
-<input type="radio" name="municipalite_responsable" value="1"> 1
-<input type="radio" name="municipalite_responsable" value="2"> 2
-<input type="radio" name="municipalite_responsable" value="3"> 3
-<input type="radio" name="municipalite_responsable" value="4"> 4
-<input type="radio" name="municipalite_responsable" value="5"> 5
-<br><br>
+<div class="likert-scale">
+  <div class="radio-option">
+    <input type="radio" name="municipalite_responsable" value="1" id="municipalite_responsable_1">
+    <label for="municipalite_responsable_1"><span>1</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="municipalite_responsable" value="2" id="municipalite_responsable_2">
+    <label for="municipalite_responsable_2"><span>2</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="municipalite_responsable" value="3" id="municipalite_responsable_3">
+    <label for="municipalite_responsable_3"><span>3</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="municipalite_responsable" value="4" id="municipalite_responsable_4">
+    <label for="municipalite_responsable_4"><span>4</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="municipalite_responsable" value="5" id="municipalite_responsable_5">
+    <label for="municipalite_responsable_5"><span>5</span></label>
+  </div>
+</div>
+<br>
 </section>
 
 <!-- Section 4 -->
@@ -276,52 +634,154 @@
 <p>1 = Tout à fait en désaccord; 5 = Tout à fait d'accord</p>
 
 <label>4.1. J'ai l'intention de fréquenter plus souvent les parcs et espaces verts de ma ville à l'avenir.</label><br>
-<input type="radio" name="intention_frequent_parcs" value="1"> 1
-<input type="radio" name="intention_frequent_parcs" value="2"> 2
-<input type="radio" name="intention_frequent_parcs" value="3"> 3
-<input type="radio" name="intention_frequent_parcs" value="4"> 4
-<input type="radio" name="intention_frequent_parcs" value="5"> 5
-<br><br>
+<div class="likert-scale">
+  <div class="radio-option">
+    <input type="radio" name="intention_frequent_parcs" value="1" id="intention_frequent_parcs_1">
+    <label for="intention_frequent_parcs_1"><span>1</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="intention_frequent_parcs" value="2" id="intention_frequent_parcs_2">
+    <label for="intention_frequent_parcs_2"><span>2</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="intention_frequent_parcs" value="3" id="intention_frequent_parcs_3">
+    <label for="intention_frequent_parcs_3"><span>3</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="intention_frequent_parcs" value="4" id="intention_frequent_parcs_4">
+    <label for="intention_frequent_parcs_4"><span>4</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="intention_frequent_parcs" value="5" id="intention_frequent_parcs_5">
+    <label for="intention_frequent_parcs_5"><span>5</span></label>
+  </div>
+</div>
+<br>
 
 <label>4.2. J'ai l'intention de soutenir (ex: par signature, vote, discussion) les initiatives visant à augmenter les espaces verts et les points d'eau dans ma ville.</label><br>
-<input type="radio" name="intention_soutenir_initiatives" value="1"> 1
-<input type="radio" name="intention_soutenir_initiatives" value="2"> 2
-<input type="radio" name="intention_soutenir_initiatives" value="3"> 3
-<input type="radio" name="intention_soutenir_initiatives" value="4"> 4
-<input type="radio" name="intention_soutenir_initiatives" value="5"> 5
-<br><br>
+<div class="likert-scale">
+  <div class="radio-option">
+    <input type="radio" name="intention_soutenir_initiatives" value="1" id="intention_soutenir_initiatives_1">
+    <label for="intention_soutenir_initiatives_1"><span>1</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="intention_soutenir_initiatives" value="2" id="intention_soutenir_initiatives_2">
+    <label for="intention_soutenir_initiatives_2"><span>2</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="intention_soutenir_initiatives" value="3" id="intention_soutenir_initiatives_3">
+    <label for="intention_soutenir_initiatives_3"><span>3</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="intention_soutenir_initiatives" value="4" id="intention_soutenir_initiatives_4">
+    <label for="intention_soutenir_initiatives_4"><span>4</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="intention_soutenir_initiatives" value="5" id="intention_soutenir_initiatives_5">
+    <label for="intention_soutenir_initiatives_5"><span>5</span></label>
+  </div>
+</div>
+<br>
 
 <label>4.3. Je n'ai pas l'intention de m'informer davantage sur les solutions pour rendre ma ville plus résiliente à la chaleur.</label><br>
-<input type="radio" name="pas_intention_s_informer" value="1"> 1
-<input type="radio" name="pas_intention_s_informer" value="2"> 2
-<input type="radio" name="pas_intention_s_informer" value="3"> 3
-<input type="radio" name="pas_intention_s_informer" value="4"> 4
-<input type="radio" name="pas_intention_s_informer" value="5"> 5
-<br><br>
+<div class="likert-scale">
+  <div class="radio-option">
+    <input type="radio" name="pas_intention_s_informer" value="1" id="pas_intention_s_informer_1">
+    <label for="pas_intention_s_informer_1"><span>1</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="pas_intention_s_informer" value="2" id="pas_intention_s_informer_2">
+    <label for="pas_intention_s_informer_2"><span>2</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="pas_intention_s_informer" value="3" id="pas_intention_s_informer_3">
+    <label for="pas_intention_s_informer_3"><span>3</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="pas_intention_s_informer" value="4" id="pas_intention_s_informer_4">
+    <label for="pas_intention_s_informer_4"><span>4</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="pas_intention_s_informer" value="5" id="pas_intention_s_informer_5">
+    <label for="pas_intention_s_informer_5"><span>5</span></label>
+  </div>
+</div>
+<br>
 
 <label>4.4. J'ai l'intention d'adopter des comportements plus respectueux de l'environnement dans ma vie quotidienne en ville (ex: réduire ma consommation, mieux trier mes déchets).</label><br>
-<input type="radio" name="intention_comportements_eco" value="1"> 1
-<input type="radio" name="intention_comportements_eco" value="2"> 2
-<input type="radio" name="intention_comportements_eco" value="3"> 3
-<input type="radio" name="intention_comportements_eco" value="4"> 4
-<input type="radio" name="intention_comportements_eco" value="5"> 5
-<br><br>
+<div class="likert-scale">
+  <div class="radio-option">
+    <input type="radio" name="intention_comportements_eco" value="1" id="intention_comportements_eco_1">
+    <label for="intention_comportements_eco_1"><span>1</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="intention_comportements_eco" value="2" id="intention_comportements_eco_2">
+    <label for="intention_comportements_eco_2"><span>2</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="intention_comportements_eco" value="3" id="intention_comportements_eco_3">
+    <label for="intention_comportements_eco_3"><span>3</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="intention_comportements_eco" value="4" id="intention_comportements_eco_4">
+    <label for="intention_comportements_eco_4"><span>4</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="intention_comportements_eco" value="5" id="intention_comportements_eco_5">
+    <label for="intention_comportements_eco_5"><span>5</span></label>
+  </div>
+</div>
+<br>
 
 <label>4.5. Je n'ai pas l'intention d'utiliser plus souvent des modes de transport actifs (marche, vélo) pour mes déplacements urbains.</label><br>
-<input type="radio" name="pas_intention_transport_actif" value="1"> 1
-<input type="radio" name="pas_intention_transport_actif" value="2"> 2
-<input type="radio" name="pas_intention_transport_actif" value="3"> 3
-<input type="radio" name="pas_intention_transport_actif" value="4"> 4
-<input type="radio" name="pas_intention_transport_actif" value="5"> 5
-<br><br>
+<div class="likert-scale">
+  <div class="radio-option">
+    <input type="radio" name="pas_intention_transport_actif" value="1" id="pas_intention_transport_actif_1">
+    <label for="pas_intention_transport_actif_1"><span>1</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="pas_intention_transport_actif" value="2" id="pas_intention_transport_actif_2">
+    <label for="pas_intention_transport_actif_2"><span>2</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="pas_intention_transport_actif" value="3" id="pas_intention_transport_actif_3">
+    <label for="pas_intention_transport_actif_3"><span>3</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="pas_intention_transport_actif" value="4" id="pas_intention_transport_actif_4">
+    <label for="pas_intention_transport_actif_4"><span>4</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="pas_intention_transport_actif" value="5" id="pas_intention_transport_actif_5">
+    <label for="pas_intention_transport_actif_5"><span>5</span></label>
+  </div>
+</div>
+<br>
 
 <label>4.6. Je serais plus motivé à poser des gestes en faveur de l’environnement en ville si je voyais que la municipalité s’engage davantage pour s’adapter aux vagues de chaleur.</label><br>
-<input type="radio" name="motivation_si_municipalite" value="1"> 1
-<input type="radio" name="motivation_si_municipalite" value="2"> 2
-<input type="radio" name="motivation_si_municipalite" value="3"> 3
-<input type="radio" name="motivation_si_municipalite" value="4"> 4
-<input type="radio" name="motivation_si_municipalite" value="5"> 5
-<br><br>
+<div class="likert-scale">
+  <div class="radio-option">
+    <input type="radio" name="motivation_si_municipalite" value="1" id="motivation_si_municipalite_1">
+    <label for="motivation_si_municipalite_1"><span>1</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="motivation_si_municipalite" value="2" id="motivation_si_municipalite_2">
+    <label for="motivation_si_municipalite_2"><span>2</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="motivation_si_municipalite" value="3" id="motivation_si_municipalite_3">
+    <label for="motivation_si_municipalite_3"><span>3</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="motivation_si_municipalite" value="4" id="motivation_si_municipalite_4">
+    <label for="motivation_si_municipalite_4"><span>4</span></label>
+  </div>
+  <div class="radio-option">
+    <input type="radio" name="motivation_si_municipalite" value="5" id="motivation_si_municipalite_5">
+    <label for="motivation_si_municipalite_5"><span>5</span></label>
+  </div>
+</div>
+<br>
 </section>
 
 <!-- Section 5 -->
@@ -330,67 +790,207 @@
 <p>1=Jamais, 5=Très souvent</p>
 
 <label>● Fréquenté des parcs ou espaces verts pour vous détendre ou vous rafraîchir :</label><br>
-<input type="radio" name="freq_parcs" value="1"> 1
-<input type="radio" name="freq_parcs" value="2"> 2
-<input type="radio" name="freq_parcs" value="3"> 3
-<input type="radio" name="freq_parcs" value="4"> 4
-<input type="radio" name="freq_parcs" value="5"> 5
-<input type="checkbox" name="freq_parcs_na" value="na"> Non applicable
-<br><br>
+<div class="likert-scale">
+  <div class="radio-option">
+      <input type="radio" name="freq_parcs" value="1" id="freq_parcs_1">
+      <label for="freq_parcs_1"><span>1</span></label>
+  </div>
+  <div class="radio-option">
+      <input type="radio" name="freq_parcs" value="2" id="freq_parcs_2">
+      <label for="freq_parcs_2"><span>2</span></label>
+  </div>
+  <div class="radio-option">
+      <input type="radio" name="freq_parcs" value="3" id="freq_parcs_3">
+      <label for="freq_parcs_3"><span>3</span></label>
+  </div>
+  <div class="radio-option">
+      <input type="radio" name="freq_parcs" value="4" id="freq_parcs_4">
+      <label for="freq_parcs_4"><span>4</span></label>
+  </div>
+  <div class="radio-option">
+      <input type="radio" name="freq_parcs" value="5" id="freq_parcs_5">
+      <label for="freq_parcs_5"><span>5</span></label>
+  </div>
+</div>
+<div class="checkbox-option">
+  <input type="checkbox" name="freq_parcs_na" value="na" id="freq_parcs_na">
+  <label for="freq_parcs_na">Non applicable</label>
+</div>
+<br>
 
 <label>● Participé à une activité de verdissement ou de nettoyage dans votre quartier (ex: plantation, corvée) :</label><br>
-<input type="radio" name="activite_verdissement" value="1"> 1
-<input type="radio" name="activite_verdissement" value="2"> 2
-<input type="radio" name="activite_verdissement" value="3"> 3
-<input type="radio" name="activite_verdissement" value="4"> 4
-<input type="radio" name="activite_verdissement" value="5"> 5
-<input type="checkbox" name="activite_verdissement_na" value="na"> Non applicable
-<br><br>
+<div class="likert-scale">
+  <div class="radio-option">
+      <input type="radio" name="activite_verdissement" value="1" id="activite_verdissement_1">
+      <label for="activite_verdissement_1"><span>1</span></label>
+  </div>
+  <div class="radio-option">
+      <input type="radio" name="activite_verdissement" value="2" id="activite_verdissement_2">
+      <label for="activite_verdissement_2"><span>2</span></label>
+  </div>
+  <div class="radio-option">
+      <input type="radio" name="activite_verdissement" value="3" id="activite_verdissement_3">
+      <label for="activite_verdissement_3"><span>3</span></label>
+  </div>
+  <div class="radio-option">
+      <input type="radio" name="activite_verdissement" value="4" id="activite_verdissement_4">
+      <label for="activite_verdissement_4"><span>4</span></label>
+  </div>
+  <div class="radio-option">
+      <input type="radio" name="activite_verdissement" value="5" id="activite_verdissement_5">
+      <label for="activite_verdissement_5"><span>5</span></label>
+  </div>
+</div>
+<div class="checkbox-option">
+  <input type="checkbox" name="activite_verdissement_na" value="na" id="activite_verdissement_na">
+  <label for="activite_verdissement_na">Non applicable</label>
+</div>
+<br>
 
 <label>● Signé une pétition ou contacté un élu concernant un enjeu environnemental urbain (ex: protection d'un espace vert, demande d'aménagement cyclable) :</label><br>
-<input type="radio" name="petition_contact" value="1"> 1
-<input type="radio" name="petition_contact" value="2"> 2
-<input type="radio" name="petition_contact" value="3"> 3
-<input type="radio" name="petition_contact" value="4"> 4
-<input type="radio" name="petition_contact" value="5"> 5
-<input type="checkbox" name="petition_contact_na" value="na"> Non applicable
-<br><br>
+<div class="likert-scale">
+  <div class="radio-option">
+      <input type="radio" name="petition_contact" value="1" id="petition_contact_1">
+      <label for="petition_contact_1"><span>1</span></label>
+  </div>
+  <div class="radio-option">
+      <input type="radio" name="petition_contact" value="2" id="petition_contact_2">
+      <label for="petition_contact_2"><span>2</span></label>
+  </div>
+  <div class="radio-option">
+      <input type="radio" name="petition_contact" value="3" id="petition_contact_3">
+      <label for="petition_contact_3"><span>3</span></label>
+  </div>
+  <div class="radio-option">
+      <input type="radio" name="petition_contact" value="4" id="petition_contact_4">
+      <label for="petition_contact_4"><span>4</span></label>
+  </div>
+  <div class="radio-option">
+      <input type="radio" name="petition_contact" value="5" id="petition_contact_5">
+      <label for="petition_contact_5"><span>5</span></label>
+  </div>
+</div>
+<div class="checkbox-option">
+  <input type="checkbox" name="petition_contact_na" value="na" id="petition_contact_na">
+  <label for="petition_contact_na">Non applicable</label>
+</div>
+<br>
 
 <label>● Fournit des efforts conscients pour réduire votre consommation d'eau à la maison :</label><br>
-<input type="radio" name="reduire_eau" value="1"> 1
-<input type="radio" name="reduire_eau" value="2"> 2
-<input type="radio" name="reduire_eau" value="3"> 3
-<input type="radio" name="reduire_eau" value="4"> 4
-<input type="radio" name="reduire_eau" value="5"> 5
-<input type="checkbox" name="reduire_eau_na" value="na"> Non applicable
-<br><br>
+<div class="likert-scale">
+  <div class="radio-option">
+      <input type="radio" name="reduire_eau" value="1" id="reduire_eau_1">
+      <label for="reduire_eau_1"><span>1</span></label>
+  </div>
+  <div class="radio-option">
+      <input type="radio" name="reduire_eau" value="2" id="reduire_eau_2">
+      <label for="reduire_eau_2"><span>2</span></label>
+  </div>
+  <div class="radio-option">
+      <input type="radio" name="reduire_eau" value="3" id="reduire_eau_3">
+      <label for="reduire_eau_3"><span>3</span></label>
+  </div>
+  <div class="radio-option">
+      <input type="radio" name="reduire_eau" value="4" id="reduire_eau_4">
+      <label for="reduire_eau_4"><span>4</span></label>
+  </div>
+  <div class="radio-option">
+      <input type="radio" name="reduire_eau" value="5" id="reduire_eau_5">
+      <label for="reduire_eau_5"><span>5</span></label>
+  </div>
+</div>
+<div class="checkbox-option">
+  <input type="checkbox" name="reduire_eau_na" value="na" id="reduire_eau_na">
+  <label for="reduire_eau_na">Non applicable</label>
+</div>
+<br>
 
 <label>● Utilisé le transport en commun, le vélo ou la marche pour des déplacements qui auraient pu être faits en voiture :</label><br>
-<input type="radio" name="transport_alternatif" value="1"> 1
-<input type="radio" name="transport_alternatif" value="2"> 2
-<input type="radio" name="transport_alternatif" value="3"> 3
-<input type="radio" name="transport_alternatif" value="4"> 4
-<input type="radio" name="transport_alternatif" value="5"> 5
-<input type="checkbox" name="transport_alternatif_na" value="na"> Non applicable
-<br><br>
+<div class="likert-scale">
+  <div class="radio-option">
+      <input type="radio" name="transport_alternatif" value="1" id="transport_alternatif_1">
+      <label for="transport_alternatif_1"><span>1</span></label>
+  </div>
+  <div class="radio-option">
+      <input type="radio" name="transport_alternatif" value="2" id="transport_alternatif_2">
+      <label for="transport_alternatif_2"><span>2</span></label>
+  </div>
+  <div class="radio-option">
+      <input type="radio" name="transport_alternatif" value="3" id="transport_alternatif_3">
+      <label for="transport_alternatif_3"><span>3</span></label>
+  </div>
+  <div class="radio-option">
+      <input type="radio" name="transport_alternatif" value="4" id="transport_alternatif_4">
+      <label for="transport_alternatif_4"><span>4</span></label>
+  </div>
+  <div class="radio-option">
+      <input type="radio" name="transport_alternatif" value="5" id="transport_alternatif_5">
+      <label for="transport_alternatif_5"><span>5</span></label>
+  </div>
+</div>
+<div class="checkbox-option">
+  <input type="checkbox" name="transport_alternatif_na" value="na" id="transport_alternatif_na">
+  <label for="transport_alternatif_na">Non applicable</label>
+</div>
+<br>
 
 <label>● Composté vos matières organiques :</label><br>
-<input type="radio" name="compost" value="1"> 1
-<input type="radio" name="compost" value="2"> 2
-<input type="radio" name="compost" value="3"> 3
-<input type="radio" name="compost" value="4"> 4
-<input type="radio" name="compost" value="5"> 5
-<input type="checkbox" name="compost_na" value="na"> Non applicable (pas de service)
-<br><br>
+<div class="likert-scale">
+  <div class="radio-option">
+      <input type="radio" name="compost" value="1" id="compost_1">
+      <label for="compost_1"><span>1</span></label>
+  </div>
+  <div class="radio-option">
+      <input type="radio" name="compost" value="2" id="compost_2">
+      <label for="compost_2"><span>2</span></label>
+  </div>
+  <div class="radio-option">
+      <input type="radio" name="compost" value="3" id="compost_3">
+      <label for="compost_3"><span>3</span></label>
+  </div>
+  <div class="radio-option">
+      <input type="radio" name="compost" value="4" id="compost_4">
+      <label for="compost_4"><span>4</span></label>
+  </div>
+  <div class="radio-option">
+      <input type="radio" name="compost" value="5" id="compost_5">
+      <label for="compost_5"><span>5</span></label>
+  </div>
+</div>
+<div class="checkbox-option">
+  <input type="checkbox" name="compost_na" value="na" id="compost_na">
+  <label for="compost_na">Non applicable (pas de service)</label>
+</div>
+<br>
 
 <label>● Favorisé des méthodes de refroidissement passives (qui n’utilise pas d’énergie) plutôt que la climatisation :</label><br>
-<input type="radio" name="refroidissement_passif" value="1"> 1
-<input type="radio" name="refroidissement_passif" value="2"> 2
-<input type="radio" name="refroidissement_passif" value="3"> 3
-<input type="radio" name="refroidissement_passif" value="4"> 4
-<input type="radio" name="refroidissement_passif" value="5"> 5
-<input type="checkbox" name="refroidissement_passif_na" value="na"> Non applicable (pas de service)
-<br><br>
+<div class="likert-scale">
+  <div class="radio-option">
+      <input type="radio" name="refroidissement_passif" value="1" id="refroidissement_passif_1">
+      <label for="refroidissement_passif_1"><span>1</span></label>
+  </div>
+  <div class="radio-option">
+      <input type="radio" name="refroidissement_passif" value="2" id="refroidissement_passif_2">
+      <label for="refroidissement_passif_2"><span>2</span></label>
+  </div>
+  <div class="radio-option">
+      <input type="radio" name="refroidissement_passif" value="3" id="refroidissement_passif_3">
+      <label for="refroidissement_passif_3"><span>3</span></label>
+  </div>
+  <div class="radio-option">
+      <input type="radio" name="refroidissement_passif" value="4" id="refroidissement_passif_4">
+      <label for="refroidissement_passif_4"><span>4</span></label>
+  </div>
+  <div class="radio-option">
+      <input type="radio" name="refroidissement_passif" value="5" id="refroidissement_passif_5">
+      <label for="refroidissement_passif_5"><span>5</span></label>
+  </div>
+</div>
+<div class="checkbox-option">
+  <input type="checkbox" name="refroidissement_passif_na" value="na" id="refroidissement_passif_na">
+  <label for="refroidissement_passif_na">Non applicable (pas de service)</label>
+</div>
+<br>
 </section>
 
 <!-- Section 6 -->

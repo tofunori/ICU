@@ -1,96 +1,291 @@
+/* Google Forms Style - Green Theme */
+
+:root {
+    --theme-color: #1e8e3e; /* Google Forms Green */
+    --light-grey-bg: #f8f9fa;
+    --card-border-color: #dadce0;
+    --text-color: #202124;
+    --label-color: #5f6368;
+    --input-border-color: #bdbdbd;
+    --input-focus-border-color: var(--theme-color);
+    --button-hover-bg: #1a7a35; /* Darker green for hover */
+    --font-family: 'Roboto', Arial, sans-serif; /* Using Roboto if available, else Arial/sans-serif */
+    --card-border-radius: 8px;
+    --base-padding: 16px;
+    --card-padding: 24px;
+}
+
 body {
-    font-family: sans-serif;
+    font-family: var(--font-family);
     line-height: 1.6;
-    margin: 20px;
-    background-color: #f4f4f4;
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    background-color: var(--light-grey-bg);
+    color: var(--text-color);
+    display: flex; /* Use flexbox for centering */
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+    padding-top: 30px; /* Add some space at the top */
+    padding-bottom: 30px; /* Add space at the bottom */
+}
+
+/* Container for the form content */
+form {
+    max-width: 700px; /* Limit form width like Google Forms */
+    width: 100%;
+    margin: 0 auto; /* Center the form */
 }
 
 h1 {
-    color: #333;
-    text-align: center;
-    border-bottom: 2px solid #77aaff;
-    padding-bottom: 10px;
+    color: var(--text-color);
+    text-align: left; /* Align title left */
+    border-bottom: none; /* Remove old border */
+    padding-bottom: 0;
+    font-size: 24px; /* Adjust size */
+    font-weight: 400;
+    margin-bottom: var(--base-padding);
+    width: 100%; /* Ensure it takes full width within the container */
+    max-width: 700px; /* Match form width */
 }
 
 h2 {
-    color: #555;
-    margin-top: 30px;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 5px;
+    color: var(--text-color);
+    margin-top: 0; /* Remove default top margin */
+    border-bottom: none; /* Remove old border */
+    padding-bottom: 0;
+    font-size: 16px;
+    font-weight: 500; /* Medium weight */
+    margin-bottom: var(--base-padding);
 }
 
+/* Header Card Style */
+.introduction {
+    background-color: #fff;
+    padding: var(--card-padding);
+    margin-bottom: var(--base-padding);
+    border: 1px solid var(--card-border-color);
+    border-radius: var(--card-border-radius);
+    border-top: 10px solid var(--theme-color); /* Green top border */
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+    width: 100%; /* Take full width within the container */
+    max-width: 700px; /* Match form width */
+    margin-left: auto; /* Center the block */
+    margin-right: auto; /* Center the block */
+    box-sizing: border-box;
+}
+
+.introduction h2 {
+    font-size: 20px; /* Larger heading for intro */
+    margin-bottom: var(--base-padding);
+}
+
+.introduction p {
+    font-size: 14px;
+    color: var(--label-color);
+    margin-bottom: var(--base-padding);
+}
+
+/* Question Card Style */
 section {
     background-color: #fff;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: var(--card-padding);
+    margin-bottom: var(--base-padding);
+    border: 1px solid var(--card-border-color);
+    border-radius: var(--card-border-radius);
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+    width: 100%; /* Take full width within the container */
+    box-sizing: border-box;
 }
 
+/* Label Styling */
 label {
     display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #444;
+    margin-bottom: var(--base-padding); /* Space below question text */
+    font-weight: 500; /* Medium weight for questions */
+    color: var(--text-color);
+    font-size: 16px;
+}
+
+/* Input, Select, Textarea Styling */
+input[type="text"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px 0; /* Padding top/bottom, no left/right */
+    margin-bottom: var(--base-padding);
+    border: none; /* Remove default border */
+    border-bottom: 1px solid var(--input-border-color); /* Bottom border only */
+    border-radius: 0; /* No border radius */
+    box-sizing: border-box;
+    background-color: transparent; /* Ensure no background color */
+    font-size: 14px;
+    transition: border-bottom-color 0.2s ease-in-out;
+}
+
+input[type="text"]:focus,
+select:focus,
+textarea:focus {
+    outline: none; /* Remove default focus outline */
+    border-bottom: 2px solid var(--input-focus-border-color); /* Thicker, colored border on focus */
+    margin-bottom: calc(var(--base-padding) - 1px); /* Adjust margin to prevent layout shift */
+}
+
+select {
+    appearance: none; /* Remove default dropdown arrow */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 10px top 50%;
+    background-size: 10px auto;
+    padding-right: 30px; /* Space for custom arrow */
+    color: var(--text-color); /* Ensure text color is set */
+}
+select option {
+    color: var(--text-color); /* Style options */
+}
+
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Custom Radio Button & Checkbox Styling */
+.radio-option, /* Add wrapper div around radio inputs in HTML if needed */
+.checkbox-option { /* Add wrapper div around checkbox inputs in HTML if needed */
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px; /* Space between options */
+    cursor: pointer;
 }
 
 input[type="radio"],
 input[type="checkbox"] {
-    margin-right: 5px;
+    appearance: none; /* Hide default */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--label-color); /* Grey border */
+    border-radius: 50%; /* Circle for radio */
+    margin-right: 10px;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s ease-in-out;
+    flex-shrink: 0; /* Prevent shrinking */
 }
 
-input[type="radio"] + label,
-input[type="checkbox"] + label {
-    font-weight: normal;
+input[type="checkbox"] {
+    border-radius: 3px; /* Square for checkbox */
 }
 
-select,
-textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box; /* Pour inclure padding et border dans la largeur totale */
-}
-
-textarea {
-    resize: vertical; /* Permet le redimensionnement vertical seulement */
-}
-
-button[type="submit"] {
+/* Custom checkmark/dot */
+input[type="radio"]::before {
+    content: '';
     display: block;
-    width: 100%;
-    padding: 12px;
-    background-color: #5cb85c;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--theme-color);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0); /* Hidden by default */
+    transition: transform 0.1s ease-in-out;
+}
+
+input[type="checkbox"]::before {
+    content: '';
+    display: block;
+    width: 12px;
+    height: 12px;
+    background-color: var(--theme-color);
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%); /* Checkmark shape */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0); /* Hidden by default */
+    transition: transform 0.1s ease-in-out;
+}
+
+/* Checked state */
+input[type="radio"]:checked,
+input[type="checkbox"]:checked {
+    border-color: var(--theme-color); /* Green border when checked */
+}
+
+input[type="radio"]:checked::before,
+input[type="checkbox"]:checked::before {
+    transform: translate(-50%, -50%) scale(1); /* Show checkmark/dot */
+}
+
+/* Label next to radio/checkbox */
+.radio-option label,
+.checkbox-option label {
+    font-weight: normal;
+    color: var(--text-color);
+    font-size: 14px;
+    margin-bottom: 0; /* Remove bottom margin for inline labels */
+    display: inline; /* Allow label text to wrap */
+}
+
+/* Likert Scale Styling */
+/* Assuming Likert radios are directly after the label */
+label + input[type="radio"] {
+    margin-left: 15px; /* Space between label and first radio */
+}
+input[type="radio"] + input[type="radio"] {
+     margin-left: 15px; /* Space between radio buttons */
+}
+/* Consider wrapping Likert scales in a div for better control */
+.likert-scale {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the group of options */
+    margin-top: 10px;
+    margin-bottom: var(--base-padding);
+}
+.likert-scale .radio-option {
+    flex-direction: column; /* Stack radio and number */
+    margin-bottom: 0;
+    margin-left: 20px; /* Increase space between options */
+    margin-right: 20px; /* Increase space between options */
+}
+.likert-scale .radio-option span { /* Add span for the number */
+    font-size: 12px;
+    color: var(--label-color);
+    margin-top: 4px;
+}
+
+
+/* Submit Button Styling */
+button[type="submit"] {
+    display: inline-block; /* Allow centering if needed */
+    width: auto; /* Auto width based on content */
+    padding: 10px 24px; /* Google Forms like padding */
+    background-color: var(--theme-color);
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 16px;
-    margin-top: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: var(--base-padding);
+    transition: background-color 0.2s ease-in-out;
 }
 
 button[type="submit"]:hover {
-    background-color: #4cae4c;
+    background-color: var(--button-hover-bg);
 }
 
-/* Style pour les échelles de Likert */
-input[type="radio"] {
-    margin-left: 10px;
-}
-input[type="radio"]:first-of-type {
-    margin-left: 0;
-}
-
-/* Ajouter un peu d'espace entre les options radio */
-input[type="radio"] + input[type="radio"] {
-    margin-left: 15px;
-}
-
-/* Style pour les questions avec échelle */
+/* Helper text styling (e.g., for scale descriptions) */
 section p {
-    font-style: italic;
-    color: #666;
-    margin-bottom: 15px;
+    font-style: normal; /* Remove italic */
+    color: var(--label-color);
+    font-size: 14px;
+    margin-bottom: var(--base-padding);
 }
+
+/* Remove old specific Likert styles if they conflict */
+/* input[type="radio"] { margin-left: 10px; } */ /* Removed */
+/* input[type="radio"]:first-of-type { margin-left: 0; } */ /* Removed */
+/* input[type="radio"] + input[type="radio"] { margin-left: 15px; } */ /* Replaced by flexbox approach or adjusted */
