@@ -55,7 +55,7 @@ def questionnaire():
 
 @app.route("/merci")
 def merci():
-    return "<h1>Merci d'avoir répondu au questionnaire !</h1><p><a href='/'>Retour au questionnaire</a></p>"
+    return render_template("thank_you.html")
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=5000) # Make accessible on network

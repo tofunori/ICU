@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Merci ! - Questionnaire : Chaleur Urbaine</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script> <!-- Keep confetti library if you want it here too -->
+    <style>
+        /* Add specific styles for the thank you page if needed */
+        .thank-you-container {
+            text-align: center;
+            padding: 40px var(--card-padding); /* More vertical padding */
+        }
+        .thank-you-container h1 {
+            font-size: 28px; /* Larger title */
+            margin-bottom: 20px;
+            border-bottom: none;
+            text-align: center;
+        }
+         .thank-you-container p {
+            font-size: 16px;
+            margin-bottom: 30px;
+            color: var(--label-color); /* Use label color for consistency */
+        }
+        .thank-you-container a {
+            display: inline-block;
+            padding: 10px 24px;
+            background-color: var(--theme-color);
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.2s ease-in-out;
+        }
+         body.dark-mode .thank-you-container a {
+             color: #121212; /* Dark text on bright button in dark mode */
+         }
+        .thank-you-container a:hover {
+            background-color: var(--button-hover-bg);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Reusing the 'introduction' class structure for consistent styling -->
+    <div class="introduction thank-you-container">
+        <h1>Merci d'avoir répondu au questionnaire !</h1>
+        <p>Votre contribution est très appréciée et nous aidera grandement dans notre étude.</p>
+        <a href="{{ url_for('questionnaire') }}">Retour à l'accueil du questionnaire</a>
+    </div>
+
+    <!-- Dark Mode Toggle -->
+    <button id="darkModeToggle"></button> <!-- Icon set by script -->
+    <script>
+      const toggle = document.getElementById('darkModeToggle');
+      const body = document.body;
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const savedTheme = localStorage.getItem('theme');
+
+      const applyTheme = (theme) => {
+        if (theme === 'dark') {
+          body.classList.add('dark-mode');
+          toggle.innerHTML = '☀️'; // Sun icon
+        } else {
+          body.classList.remove('dark-mode');
+          toggle.innerHTML = '🌙'; // Moon icon
+        }
+      };
+
+      if (savedTheme) {
+        applyTheme(savedTheme);
+      } else if (prefersDark) {
+        applyTheme('dark');
+      } else {
+         applyTheme('light');
+      }
+
+      toggle.addEventListener('click', () => {
+        const isDarkMode = body.classList.toggle('dark-mode');
+        const newTheme = isDarkMode ? 'dark' : 'light';
+        localStorage.setItem('theme', newTheme);
+        applyTheme(newTheme);
+      });
+
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        if (!localStorage.getItem('theme')) {
+           applyTheme(e.matches ? 'dark' : 'light');
+        }
+      });
+
+      // Optional: Trigger confetti on page load for thank you page
+      // confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+
+    </script>
+</body>
+</html>
