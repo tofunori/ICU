@@ -1003,5 +1003,50 @@
 
 <button type="submit">Soumettre le questionnaire</button>
 </form>
+<button id="darkModeToggle"></button> <!-- Icon set by script -->
+<script>
+  const toggle = document.getElementById('darkModeToggle');
+  const body = document.body;
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const savedTheme = localStorage.getItem('theme');
+
+  // Function to apply theme and update button text
+  const applyTheme = (theme) => {
+    if (theme === 'dark') {
+      body.classList.add('dark-mode');
+      toggle.innerHTML = '☀️'; // Sun icon for light mode toggle
+    } else {
+      body.classList.remove('dark-mode');
+      toggle.innerHTML = '🌙'; // Moon icon for dark mode toggle
+    }
+  };
+
+  // Set initial theme based on saved preference or system preference
+  if (savedTheme) {
+    applyTheme(savedTheme);
+  } else if (prefersDark) {
+    applyTheme('dark');
+    // You could uncomment the line below to save the system preference initially
+    // localStorage.setItem('theme', 'dark');
+  } else {
+     applyTheme('light'); // Default to light
+  }
+
+  // Add click listener to toggle theme
+  toggle.addEventListener('click', () => {
+    const isDarkMode = body.classList.toggle('dark-mode');
+    const newTheme = isDarkMode ? 'dark' : 'light';
+    localStorage.setItem('theme', newTheme);
+    applyTheme(newTheme); // Update button text
+  });
+
+  // Optional: Listen for system preference changes (if user hasn't manually set a theme)
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+    if (!localStorage.getItem('theme')) { // Only react if no theme is saved
+       applyTheme(e.matches ? 'dark' : 'light');
+    }
+  });
+</script>
+
 </body>
 </html>
