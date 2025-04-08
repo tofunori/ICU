@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Questionnaire : Chaleur Urbaine</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 </head>
 <body>
 <div class="introduction">
@@ -1046,6 +1047,28 @@
        applyTheme(e.matches ? 'dark' : 'light');
     }
   });
+</script>
+
+<script>
+  // Confetti on submit
+  const form = document.querySelector('form'); // Select the form element
+  if (form) {
+    form.addEventListener('submit', function(event) {
+      // Trigger confetti!
+      confetti({
+        particleCount: 150, // Adjust number of particles
+        spread: 100,       // Adjust how wide the confetti spreads
+        origin: { y: 0.6 } // Start confetti slightly below the top edge
+      });
+      
+      // Note: The form will submit normally after the confetti starts.
+      // If you wanted to delay submission to *see* the confetti, 
+      // you'd need event.preventDefault() and a setTimeout to submit later.
+      // But for a simple effect, this is usually sufficient.
+    });
+  } else {
+    console.error('Confetti script: Could not find the form element.');
+  }
 </script>
 
 </body>
