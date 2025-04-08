@@ -20,7 +20,7 @@ supabase_headers = {
     "Content-Type": "application/json",
     "Prefer": "return=minimal", # Don't return the inserted data
 }
-# --- End Supabase Configuration ---
+# -- End Supabase Configuration --
 
 
 @app.route("/", methods=["GET", "POST"])
