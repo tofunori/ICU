@@ -8,11 +8,14 @@
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 </head>
 <body>
+<div class="header-image-container">
+    <img src="{{ url_for('static', filename='header_image.jpg') }}" alt="Header Image">
+</div>
 <div class="introduction">
     <h2>Introduction et Consentement</h2>
     <p>Bonjour,</p>
     <p>Nous sommes une équipe d'étudiant(e)s de l'Université du Québec à Trois-Rivières (UQTR) dans le cadre du cours "Analyse du Paysage". Nous menons une étude sur la perception de la chaleur estivale en milieu urbain et les stratégies mises en place par les résident(e)s pour y faire face, ainsi que le lien potentiel avec les attitudes et comportements environnementaux.</p>
-    <p>Votre participation à ce questionnaire nous aidera à mieux comprendre les impacts vécus et les motivations liées à l'adaptation et à l'environnement en contexte de chaleur urbaine. Répondre à ce questionnaire vous prendra environ 10-15 minutes.</p>
+    <p>Votre participation à ce questionnaire nous aidera à mieux comprendre les impacts vécus et les motivations liées à l'adaptation et à l'environnement en contexte de chaleur urbaine. Répondre à ce questionnaire vous prendra environ 20 minutes.</p>
     <p>Votre participation est entièrement volontaire et anonyme. Aucune information permettant de vous identifier ne sera collectée ou diffusée. Les données recueillies seront utilisées uniquement à des fins académiques dans le cadre de notre projet de cours.</p>
     <p>Vous pouvez choisir de ne pas répondre à certaines questions ou d'arrêter le questionnaire à tout moment sans aucune conséquence.</p>
     <p><strong>En commençant à répondre, vous consentez à participer à cette étude.</strong></p>
@@ -115,7 +118,7 @@
 <!-- Section 1 -->
 <section>
 <h2>Section 1 : Risque lié à la Chaleur</h2>
-<p>1 = Tout à fait en désaccord; 5 = Tout à fait d'accord</p>
+<p>1 = Tout à fait en désaccord ; 2 = Plutôt en désaccord; 3 = Ni d'accord ni en désaccord; 4 = Plutôt d'accord; 5 = Tout à fait d'accord</p>
 
 <label>1.1. Les vagues de chaleur que nous connaissons deviennent de plus en plus intenses.</label><br>
 <div class="likert-scale">
@@ -271,7 +274,7 @@
 <!-- Section 2 -->
 <section>
 <h2>Section 2 : Efficacité des stratégies contre la chaleur</h2>
-<p>1 = Tout à fait en désaccord; 5 = Tout à fait d'accord</p>
+<p>1 = Tout à fait en désaccord ; 2 = Plutôt en désaccord; 3 = Ni d'accord ni en désaccord; 4 = Plutôt d'accord; 5 = Tout à fait d'accord</p>
 
 <label>2.1. Fréquenter les parcs et les espaces verts est une stratégie efficace pour réduire mon inconfort personnel pendant les canicules.</label><br>
 <div class="likert-scale">
@@ -452,7 +455,7 @@
 <!-- Section 3 -->
 <section>
 <h2>Section 3 : Perspective environnementale</h2>
-<p>1 = Tout à fait en désaccord; 5 = Tout à fait d'accord</p>
+<p>1 = Tout à fait en désaccord ; 2 = Plutôt en désaccord; 3 = Ni d'accord ni en désaccord; 4 = Plutôt d'accord; 5 = Tout à fait d'accord</p>
 
 <label>3.1. Valoriser et protéger les espaces verts en ville est important pour moi.</label><br>
 <div class="likert-scale">
@@ -554,7 +557,7 @@
 </div>
 <br>
 
-<label>3.5. Je crois que les espaces verts et bleus rendent la ville plus agréable à vivre.</label><br>
+<label>3.5. Je crois que les espaces verts et les espaces avec de l'eau rendent la ville plus agréable à vivre.</label><br>
 <div class="likert-scale">
   <div class="radio-option">
     <input type="radio" name="espaces_agreables" value="1" id="espaces_agreables_1">
@@ -579,7 +582,7 @@
 </div>
 <br>
 
-<label>3.6. Protéger et valoriser les accès publics à l’eau au sein de ma ville est un enjeu environnemental important.</label><br>
+<label>3.6. Protéger et valoriser les accès publics à l’eau au sein de ma ville est un enjeu environnemental.</label><br>
 <div class="likert-scale">
   <div class="radio-option">
     <input type="radio" name="proteger_acces_eau" value="1" id="proteger_acces_eau_1">
@@ -633,7 +636,7 @@
 <!-- Section 4 -->
 <section>
 <h2>Section 4 : Intentions environnementales</h2>
-<p>1 = Tout à fait en désaccord; 5 = Tout à fait d'accord</p>
+<p>1 = Tout à fait en désaccord; 2 = Plutôt en désaccord; 3 = Ni d'accord ni en désaccord; 4 = Plutôt d'accord; 5 = Tout à fait d'accord</p>
 
 <label>4.1. J'ai l'intention de fréquenter plus souvent les parcs et espaces verts de ma ville à l'avenir.</label><br>
 <div class="likert-scale">
@@ -789,7 +792,7 @@
 <!-- Section 5 -->
 <section>
 <h2>Section 5 : Habitudes et gestes écologiques (12 derniers mois)</h2>
-<p>1=Jamais, 5=Très souvent</p>
+<p>1=Jamais, 2=Rarement, 3=Parfois, 4=Souvent, 5=Très souvent</p>
 
 <label>● Fréquenté des parcs ou espaces verts pour vous détendre ou vous rafraîchir :</label><br>
 <div class="likert-scale">
@@ -813,10 +816,6 @@
       <input type="radio" name="freq_parcs" value="5" id="freq_parcs_5">
       <label for="freq_parcs_5"><span>5</span></label>
   </div>
-</div>
-<div class="checkbox-option">
-  <input type="checkbox" name="freq_parcs_na" value="na" id="freq_parcs_na">
-  <label for="freq_parcs_na">Non applicable</label>
 </div>
 <br>
 
@@ -843,10 +842,6 @@
       <label for="activite_verdissement_5"><span>5</span></label>
   </div>
 </div>
-<div class="checkbox-option">
-  <input type="checkbox" name="activite_verdissement_na" value="na" id="activite_verdissement_na">
-  <label for="activite_verdissement_na">Non applicable</label>
-</div>
 <br>
 
 <label>● Signé une pétition ou contacté un élu concernant un enjeu environnemental urbain (ex: protection d'un espace vert, demande d'aménagement cyclable) :</label><br>
@@ -871,10 +866,6 @@
       <input type="radio" name="petition_contact" value="5" id="petition_contact_5">
       <label for="petition_contact_5"><span>5</span></label>
   </div>
-</div>
-<div class="checkbox-option">
-  <input type="checkbox" name="petition_contact_na" value="na" id="petition_contact_na">
-  <label for="petition_contact_na">Non applicable</label>
 </div>
 <br>
 
@@ -901,10 +892,6 @@
       <label for="reduire_eau_5"><span>5</span></label>
   </div>
 </div>
-<div class="checkbox-option">
-  <input type="checkbox" name="reduire_eau_na" value="na" id="reduire_eau_na">
-  <label for="reduire_eau_na">Non applicable</label>
-</div>
 <br>
 
 <label>● Utilisé le transport en commun, le vélo ou la marche pour des déplacements qui auraient pu être faits en voiture :</label><br>
@@ -929,10 +916,6 @@
       <input type="radio" name="transport_alternatif" value="5" id="transport_alternatif_5">
       <label for="transport_alternatif_5"><span>5</span></label>
   </div>
-</div>
-<div class="checkbox-option">
-  <input type="checkbox" name="transport_alternatif_na" value="na" id="transport_alternatif_na">
-  <label for="transport_alternatif_na">Non applicable</label>
 </div>
 <br>
 
@@ -959,10 +942,6 @@
       <label for="compost_5"><span>5</span></label>
   </div>
 </div>
-<div class="checkbox-option">
-  <input type="checkbox" name="compost_na" value="na" id="compost_na">
-  <label for="compost_na">Non applicable (pas de service)</label>
-</div>
 <br>
 
 <label>● Favorisé des méthodes de refroidissement passives (qui n’utilise pas d’énergie) plutôt que la climatisation :</label><br>
@@ -987,10 +966,6 @@
       <input type="radio" name="refroidissement_passif" value="5" id="refroidissement_passif_5">
       <label for="refroidissement_passif_5"><span>5</span></label>
   </div>
-</div>
-<div class="checkbox-option">
-  <input type="checkbox" name="refroidissement_passif_na" value="na" id="refroidissement_passif_na">
-  <label for="refroidissement_passif_na">Non applicable (pas de service)</label>
 </div>
 <br>
 </section>

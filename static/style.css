@@ -404,3 +404,27 @@ body.dark-mode #darkModeToggle {
     background-color: var(--theme-color);
     color: #121212;
 }
+
+
+/* Header Image Styling */
+.header-image-container {
+    width: 100%;
+    max-width: 700px; /* Match form width */
+    margin: 0 auto var(--base-padding) auto; /* Center horizontally, add bottom margin */
+    border-radius: var(--card-border-radius); /* Match card corner rounding */
+    line-height: 0; /* Prevent extra space below image */
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15); /* Match card shadow */
+    height: 150px; /* Set fixed container height */
+}
+
+.header-image-container img {
+    display: block; /* Remove extra space below image */
+    width: 100%; /* Fill container width */
+    height: 100%; /* Fill container height */
+    object-fit: fill; /* Stretch to fill, ignore aspect ratio */
+}
+
+/* Dark mode adjustments for header image container */
+body.dark-mode .header-image-container {
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.3), 0 1px 3px 1px rgba(0,0,0,.15); /* Adjust shadow for dark */
+}
