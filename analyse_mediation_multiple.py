@@ -21,7 +21,7 @@ var_Y = 'Comportements environnementaux'# Correspond à l'entête "Comportements
 # --- Chargement des Données ---
 # !!! MODIFIEZ LA LIGNE CI-DESSOUS si nécessaire pour indiquer le bon chemin et nom de votre fichier !!!
 # Assurez-vous que le fichier est bien dans le dossier 'results'
-df = pd.read_excel("results/scores_participants_par_theme.xlsx") # Updated relative path
+df = pd.read_excel("results\responses_with_scores.csv") # Updated relative path
 
 # --- Vérification (Optionnelle mais recommandée) ---
 # Décommentez les lignes suivantes pour vérifier que les données sont bien chargées
