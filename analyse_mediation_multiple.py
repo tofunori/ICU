@@ -5,6 +5,20 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from scipy.stats import pearsonr
 
+# --- Apply Professional Style & Font Sizes ---
+plt.style.use('seaborn-v0_8-ticks') # Use 'ticks' style for a cleaner academic look
+plt.rcParams.update({
+    'font.size': 10,             # Base font size (Reduced)
+    'axes.titlesize': 14,        # Title font size (Reduced)
+    'axes.labelsize': 12,        # Axis label font size (Reduced)
+    'xtick.labelsize': 10,       # X-tick label size (Reduced)
+    'ytick.labelsize': 10,       # Y-tick label size (Reduced)
+    'figure.titlesize': 16,      # Figure title font size (Reduced)
+    'legend.fontsize': 10,       # Legend font size (Reduced)
+    'figure.dpi': 100,           # Default DPI setting
+    'savefig.dpi': 300           # Higher DPI for saved figures
+})
+
 # --- 1. Configuration ---
 
 # !!! IMPORTANT: Vérifiez que ces noms correspondent aux entêtes EXACTES de votre fichier CSV/Excel !!!
@@ -37,11 +51,13 @@ print("-" * 30)
 
 # --- Correlation Matrix Heatmap --- 
 try:
-    # Select only the columns used in the analysis
-    cols_for_corr = [var_X, var_M1, var_M2, var_M3, var_Y]
-    df_corr = df[cols_for_corr]
+    # Define the desired causal order for the matrix
+    causal_order = [var_X, var_M1, var_M2, var_M3, var_Y]
     
-    # Calculate correlation matrix
+    # Select and reorder the columns
+    df_corr = df[causal_order]
+    
+    # Calculate correlation matrix based on the new order
     corr_matrix = df_corr.corr()
     print("\nCorrelation Matrix (R values):")
     print(corr_matrix)
@@ -56,21 +72,31 @@ try:
         var_M3: 'Intention environnementale',
         var_Y: 'Comportements pro-environnementaux'
     }
-    # Get the labels in the correct order of the correlation matrix columns/index
+    # Get the labels in the correct order (already defined by causal_order used for corr_matrix)
     plot_labels = [label_mapping.get(col, col) for col in corr_matrix.columns]
 
-    plt.figure(figsize=(12, 10)) # Increased figure size further for longer labels
-    sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', fmt=".2f", linewidths=.5,
-                xticklabels=plot_labels, yticklabels=plot_labels, # Use mapped labels
-                annot_kws={"size": 10})
-    plt.title('Corrélations entre les cinq thèmes du modèle de médiation', fontsize=16) # Updated title
-    plt.xticks(rotation=45, ha='right', fontsize=10) # Adjusted xticks font size/rotation
-    plt.yticks(rotation=0, fontsize=12) # Increased yticks font size
+    # Font family is now handled by rcParams, removing specific setting here
+    
+    plt.figure(figsize=(10, 8)) # Adjusted figure size
+    # Create heatmap with new aesthetics
+    heatmap = sns.heatmap(corr_matrix,
+                          annot=True,           # Show coefficients
+                          cmap='Blues',         # Use Blues colormap
+                          fmt=".2f",            # Format coefficients to 2 decimals
+                          linewidths=.5,        # Add lines between cells
+                          xticklabels=plot_labels,
+                          yticklabels=plot_labels,
+                          annot_kws={"size": 9}, # Reduced annotation font size
+                          cbar_kws={'label': 'Coefficient de corrélation de Pearson (R)'}) # Color bar label
+                          
+    plt.title('Corrélations entre les cinq thèmes du modèle de médiation environnementale', pad=20) # Use rcParams for size
+    plt.xticks(rotation=45, ha='right') # Use rcParams for size
+    plt.yticks(rotation=0) # Use rcParams for size
     
     # Save the plot
     corr_plot_filename = 'plots/correlation_matrix.png' # Changed path to plots/
     plt.tight_layout()
-    plt.savefig(corr_plot_filename, dpi=300) # Added dpi=300 for higher resolution
+    plt.savefig(corr_plot_filename) # Use rcParams for dpi
     print(f"\nCorrelation matrix plot saved as: {corr_plot_filename}")
     plt.close() # Close the figure to prevent interference with the next plot
 
@@ -91,13 +117,27 @@ try:
         ax = plt.gca()
         # Use a smaller font size for annotations
         ax.annotate(f"R = {r:.2f}\nR² = {r**2:.2f}",
-                    xy=(.1, .9), xycoords=ax.transAxes, fontsize=8) # Adjusted position and font size
+                    xy=(.1, .9), xycoords=ax.transAxes, fontsize=8) # Kept small font size for R/R^2 annotations
 
-    # Use the same selected columns as the correlation matrix
-    pairplot = sns.pairplot(df_corr)
+    # Rename columns for the pairplot using the French labels
+    df_pairplot = df_corr.rename(columns=label_mapping)
+
+    # Create the pairplot with renamed columns and refined style
+    pairplot = sns.pairplot(df_pairplot, plot_kws={'s': 20, 'alpha': 0.6}) # Smaller, semi-transparent points
     pairplot.map_upper(corrfunc) # Map the function to the upper triangle
-    pairplot.fig.suptitle('Pairwise Relationships Between Variables (with R/R²)', y=1.02) # Add title slightly above plot
-    
+    pairplot.fig.suptitle('Relations Pair-à-Pair entre les Variables (avec R et R²)', y=1.02) # French title
+
+    # Rotate axis labels for better readability
+    for ax in pairplot.axes.flat:
+        # Rotate x-axis labels
+        plt.setp(ax.get_xticklabels(), rotation=45, ha='right', rotation_mode='anchor')
+        # Rotate y-axis labels (less common, but as requested)
+        plt.setp(ax.get_yticklabels(), rotation=45, ha='right', rotation_mode='anchor')
+
+    # Adjust layout to prevent labels overlapping
+    pairplot.fig.tight_layout()
+    pairplot.fig.subplots_adjust(top=0.95) # Adjust top to make space for title
+
     # Save the plot
     pairplot_filename = 'plots/scatter_pairplot_with_R.png' # Changed path to plots/
     pairplot.savefig(pairplot_filename)
@@ -296,17 +336,17 @@ if 'results_ci' in locals() and 'indirect_m1_est' in locals():
         
         ax.bar(x_pos, point_estimates, yerr=error_bars, align='center', alpha=0.7, ecolor='black', capsize=10)
         
-        ax.set_ylabel('Estimation de l\'Effet', fontsize=12) # French label
+        ax.set_ylabel('Estimation de l\'Effet') # Use rcParams for size
         ax.set_xticks(x_pos)
-        ax.set_xticklabels(labels, fontsize=12) # Increased font size
-        ax.set_title('Estimations des Effets Indirects et Intervalles de Confiance à 95%', fontsize=14) # French title
+        ax.set_xticklabels(labels) # Use rcParams for size
+        ax.set_title('Estimations des Effets Indirects et Intervalles de Confiance à 95%') # Use rcParams for size
         ax.yaxis.grid(True, linestyle='--', alpha=0.6)
         ax.axhline(0, color='grey', linewidth=0.8) # Add line at y=0
         
         # Save the plot
         plot_filename = 'plots/mediation_indirect_effects.png' # Changed path to plots/
         plt.tight_layout()
-        plt.savefig(plot_filename, dpi=300) # Added dpi=300
+        plt.savefig(plot_filename) # Use rcParams for dpi
         print(f"\nPlot saved as: {plot_filename}")
 
     except Exception as e:

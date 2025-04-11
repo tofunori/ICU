@@ -20,13 +20,13 @@ COLUMN_NAMES = list(SCORE_COLUMNS.keys())
 # --- Apply Professional Style & Font Sizes ---
 plt.style.use('seaborn-v0_8-ticks') # Changed style to 'ticks' for a cleaner academic look
 plt.rcParams.update({
-    'font.size': 14,             # Base font size
-    'axes.titlesize': 18,        # Title font size
-    'axes.labelsize': 16,        # Axis label font size
-    'xtick.labelsize': 14,       # X-tick label size
-    'ytick.labelsize': 14,       # Y-tick label size
-    'figure.titlesize': 20,      # Figure title font size (if used)
-    'legend.fontsize': 14,       # Legend font size
+    'font.size': 10,             # Base font size (Reduced)
+    'axes.titlesize': 14,        # Title font size (Reduced)
+    'axes.labelsize': 12,        # Axis label font size (Reduced)
+    'xtick.labelsize': 10,       # X-tick label size (Reduced)
+    'ytick.labelsize': 10,       # Y-tick label size (Reduced)
+    'figure.titlesize': 16,      # Figure title font size (Reduced)
+    'legend.fontsize': 10,       # Legend font size (Reduced)
 })
 
 # --- Ensure output directory exists ---
@@ -54,7 +54,7 @@ std_devs = scores_df.std()
 plt.figure(figsize=(12, 8)) # Increased figure size
 bars = plt.bar(means.index, means.values, yerr=std_devs.values, capsize=7, color='darkgrey', alpha=0.9, width=0.6) # Changed color for ticks style
 plt.ylabel('Score Moyen (Échelle Likert 1-5)')
-plt.title('Moyenne et Écart-Type des Scores par Thème', pad=20) # Added padding
+plt.title('Moyenne et Écart-Type par Thème', pad=20) # Removed "des Scores"
 plt.xticks(rotation=0, ha='center') # Adjusted rotation for potentially longer labels
 plt.ylim(0, 6) # Adjusted ylim slightly for text
 plt.grid(axis='y', linestyle='--', alpha=0.6)
@@ -63,7 +63,7 @@ plt.axhline(3, color='grey', linestyle=':', linewidth=1.5, zorder=0, label='Poin
 for i, bar in enumerate(bars):
     yval = bar.get_height()
     theme_name = means.index[i] # Get the theme name corresponding to the bar index
-    plt.text(bar.get_x() + bar.get_width()/2.0, yval + std_devs[theme_name] + 0.15, f'{yval:.2f}', va='bottom', ha='center', fontsize=12) # Adjusted offset and font size
+    plt.text(bar.get_x() + bar.get_width()/2.0, yval + std_devs[theme_name] + 0.15, f'{yval:.2f}', va='bottom', ha='center', fontsize=9) # Reduced font size for text on bars
 
 plt.tight_layout(pad=1.5) # Added padding
 plt.savefig(os.path.join(OUTPUT_DIR, 'bar_chart_means_stddev.png'), dpi=300, bbox_inches='tight') # Added DPI and bbox_inches
@@ -73,10 +73,10 @@ plt.close()
 # --- Plot 2: Boxplots ---
 plt.figure(figsize=(8, 7)) # Made figure more compact (less wide)
 sns.boxplot(data=scores_df, palette='Greys', width=0.6, showmeans=True, meanprops={"marker":"o", "markerfacecolor":"white", "markeredgecolor":"black", "markersize":"8"}) # Slightly wider boxes
-plt.ylabel('Score (Échelle Likert 1-5)', fontsize=16) # Reduced font size back
-plt.title('Distribution des niveaux de réponse par thème', pad=20, fontsize=20) # Kept title large
-plt.xticks(rotation=30, ha='right', fontsize=14) # Rotated labels 30 degrees
-plt.yticks(fontsize=14) # Keep y-tick font size
+plt.ylabel('Score (Échelle Likert 1-5)') # Use rcParams
+plt.title('Distribution des niveaux de réponse par thème', pad=20) # Use rcParams
+plt.xticks(rotation=30, ha='right') # Use rcParams
+plt.yticks() # Use rcParams
 plt.ylim(0, 6) # Adjusted ylim
 # plt.grid(axis='y', linestyle='--', alpha=0.6) # Keep grid commented out for ticks style
 sns.despine(trim=True) # Remove top and right spines for cleaner look
@@ -102,11 +102,11 @@ ax.plot(angles, stats, 'black', linewidth=1.8) # Changed color and thickness
 
 # Set axis limits and labels
 ax.set_yticks(np.arange(1, 6, 1)) # Likert 1-5
-ax.set_yticklabels([str(i) for i in np.arange(1, 6, 1)], fontsize=12) # Adjusted font size
+ax.set_yticklabels([str(i) for i in np.arange(1, 6, 1)]) # Use rcParams
 ax.set_xticks(angles[:-1])
-ax.set_xticklabels(labels, fontsize=13) # Adjusted font size
+ax.set_xticklabels(labels) # Use rcParams
 plt.ylim(0, 6) # Adjusted ylim
-plt.title('Profil Moyen des Réponses par Thème', size=18, y=1.12) # Adjusted size and position
+plt.title('Profil Moyen des Réponses par Thème', y=1.12) # Use rcParams
 
 # plt.tight_layout() # Often not needed/problematic with polar plots + bbox_inches
 plt.savefig(os.path.join(OUTPUT_DIR, 'radar_chart_means.png'), dpi=300, bbox_inches='tight') # Added DPI and bbox_inches
