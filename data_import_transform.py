@@ -6,7 +6,7 @@ import pandas as pd
 SUPABASE_URL = "https://wlsggpanveasjrtnpuhs.supabase.co"
 SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indsc2dncGFudmVhc2pydG5wdWhzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQwNDI4MjQsImV4cCI6MjA1OTYxODgyNH0.qX-J-UnrA3u5IabOI36rJdoUN2cuRATFaF0dL1iN4og"
 SUPABASE_TABLE = "responses"
-OUTPUT_CSV_FILE = "responses_with_scores.csv"
+OUTPUT_CSV_FILE = "results/responses_with_scores.csv" # Updated path
 
 # Colonnes à recoder à l'envers (Likert inversé)
 COLUMNS_TO_REVERSE = [

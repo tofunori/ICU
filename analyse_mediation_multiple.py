@@ -20,7 +20,8 @@ var_Y = 'Comportements environnementaux'# Correspond à l'entête "Comportements
 
 # --- Chargement des Données ---
 # !!! MODIFIEZ LA LIGNE CI-DESSOUS si nécessaire pour indiquer le bon chemin et nom de votre fichier !!!
-df = pd.read_excel(r"D:\UQTR\Hiver 2025\Analyse du paysage\TP5\scores_participants_par_theme.xlsx")
+# Assurez-vous que le fichier est bien dans le dossier 'results'
+df = pd.read_excel("results/scores_participants_par_theme.xlsx") # Updated relative path
 
 # --- Vérification (Optionnelle mais recommandée) ---
 # Décommentez les lignes suivantes pour vérifier que les données sont bien chargées
@@ -48,12 +49,12 @@ try:
     # Create heatmap (enhanced for report)
     plt.figure(figsize=(10, 8)) # Increased figure size
     sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', fmt=".2f", linewidths=.5, annot_kws={"size": 10}) # Added annot_kws for annotation font size
-    plt.title('Correlation Matrix of Variables', fontsize=14) # Increased title font size
+    plt.title('Matrice de Corrélation des Variables', fontsize=14) # French title
     plt.xticks(rotation=45, ha='right', fontsize=12) # Increased xticks font size
     plt.yticks(rotation=0, fontsize=12) # Increased yticks font size
     
     # Save the plot
-    corr_plot_filename = 'correlation_matrix.png'
+    corr_plot_filename = 'results/correlation_matrix.png' # Updated path
     plt.tight_layout()
     plt.savefig(corr_plot_filename, dpi=300) # Added dpi=300 for higher resolution
     print(f"\nCorrelation matrix plot saved as: {corr_plot_filename}")
@@ -262,7 +263,7 @@ if 'results_ci' in locals() and 'indirect_m1_est' in locals():
         labels = ['Indirect via M1\n(Efficacité strat.)', 
                   'Indirect via M2\n(Attitude env.)', 
                   'Indirect via M3\n(Intention env.)', 
-                  'Total Indirect']
+                  'Effet Indirect Total'] # French label
         point_estimates = [indirect_m1_est, indirect_m2_est, indirect_m3_est, total_indirect_est]
         
         # Calculate error bar lengths (distance from estimate to CI bounds)
@@ -276,22 +277,22 @@ if 'results_ci' in locals() and 'indirect_m1_est' in locals():
         error_bars = [lower_errors, upper_errors]
 
         # Create the plot
-        fig, ax = plt.subplots(figsize=(10, 6))
+        fig, ax = plt.subplots(figsize=(12, 7)) # Increased figure size
         x_pos = np.arange(len(labels))
         
         ax.bar(x_pos, point_estimates, yerr=error_bars, align='center', alpha=0.7, ecolor='black', capsize=10)
         
-        ax.set_ylabel('Effect Estimate')
+        ax.set_ylabel('Estimation de l\'Effet', fontsize=12) # French label
         ax.set_xticks(x_pos)
-        ax.set_xticklabels(labels)
-        ax.set_title('Indirect Effect Estimates and 95% Confidence Intervals')
+        ax.set_xticklabels(labels, fontsize=12) # Increased font size
+        ax.set_title('Estimations des Effets Indirects et Intervalles de Confiance à 95%', fontsize=14) # French title
         ax.yaxis.grid(True, linestyle='--', alpha=0.6)
         ax.axhline(0, color='grey', linewidth=0.8) # Add line at y=0
         
         # Save the plot
-        plot_filename = 'mediation_indirect_effects.png'
+        plot_filename = 'results/mediation_indirect_effects.png' # Updated path
         plt.tight_layout()
-        plt.savefig(plot_filename)
+        plt.savefig(plot_filename, dpi=300) # Added dpi=300
         print(f"\nPlot saved as: {plot_filename}")
 
     except Exception as e:

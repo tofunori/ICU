@@ -4,10 +4,10 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Ensure plots directory exists
-os.makedirs("plots", exist_ok=True)
+os.makedirs("results", exist_ok=True) # Updated directory
 
 # Load data
-df = pd.read_csv("responses_recoded.csv")
+df = pd.read_csv("data/responses_recoded.csv") # Updated path
 
 # Basic data cleaning
 # Replace empty strings with NaN
@@ -46,7 +46,7 @@ for col in demographics:
     plt.xlabel(col)
     plt.ylabel("Count")
     plt.tight_layout()
-    plt.savefig(f"plots/{col}_distribution.png")
+    plt.savefig(f"results/{col}_distribution.png") # Updated path
     plt.close()
 
 # 2. Key perceptions: e.g., vagiues_intenses, menace_env, crainte_futur
@@ -59,7 +59,7 @@ for col in perception_cols:
         plt.xlabel(col)
         plt.ylabel("Frequency")
         plt.tight_layout()
-        plt.savefig(f"plots/{col}_hist.png")
+        plt.savefig(f"results/{col}_hist.png") # Updated path
         plt.close()
 
 # 3. Relationship: crainte_futur by age group (boxplot)
@@ -70,7 +70,7 @@ if "crainte_futur" in df.columns and "age" in df.columns:
     plt.xlabel("Age Group")
     plt.ylabel("Crainte futur")
     plt.tight_layout()
-    plt.savefig("plots/crainte_futur_by_age.png")
+    plt.savefig("results/crainte_futur_by_age.png") # Updated path
     plt.close()
 
 # 4. Relationship: intention_frequent_parcs by parcs_efficace (scatter)
@@ -81,7 +81,7 @@ if "intention_frequent_parcs" in df.columns and "parcs_efficace" in df.columns:
     plt.xlabel("Parcs efficace")
     plt.ylabel("Intention frequent parcs")
     plt.tight_layout()
-    plt.savefig("plots/intention_vs_parcs_efficace.png")
+    plt.savefig("results/intention_vs_parcs_efficace.png") # Updated path
     plt.close()
 
 # 5. Relationship: vulnerability by housing type (boxplot)
@@ -92,11 +92,11 @@ if "vulnerable" in df.columns and "logement" in df.columns:
     plt.xlabel("Housing Type")
     plt.ylabel("Vulnerability")
     plt.tight_layout()
-    plt.savefig("plots/vulnerable_by_logement.png")
+    plt.savefig("results/vulnerable_by_logement.png") # Updated path
     plt.close()
 
 # 6. Summary statistics for Likert columns
 summary_stats = df[likert_cols].describe().transpose()
-summary_stats.to_csv("plots/likert_summary_stats.csv")
+summary_stats.to_csv("data/likert_summary_stats.csv") # Updated path
 
-print("Analysis complete. Plots and summary statistics saved in the 'plots/' directory.")
+print("Analysis complete. Plots saved in 'results/' and summary statistics in 'data/'.") # Updated message
