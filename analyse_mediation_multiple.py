@@ -12,16 +12,16 @@ from scipy.stats import pearsonr
 
 # Noms des variables Python basés sur votre image:
 # CORRECTION: Retrait des espaces superflus à la fin des noms de variables pour éviter des erreurs potentielles
-var_X = 'Risque chaleur'                # Correspond à l'entête "Risque chaleur"
-var_M1 = 'Efficacité stratégies'        # Correspond à l'entête "Efficacité stratégies"
-var_M2 = 'Attitude environnementale'    # Correspond à l'entête "Attitude environnementale"
-var_M3 = 'Intention environnementale'   # Correspond à l'entête "Intention environnementale"
-var_Y = 'Comportements environnementaux'# Correspond à l'entête "Comportements environnementaux"
+var_X = 'score_risque_chaleur'          # Updated to match CSV header
+var_M1 = 'score_efficacite'             # Updated to match CSV header
+var_M2 = 'score_attitude_env'           # Updated to match CSV header
+var_M3 = 'score_intention_env'          # Updated to match CSV header
+var_Y = 'score_comportements'           # Updated to match CSV header
 
 # --- Chargement des Données ---
 # !!! MODIFIEZ LA LIGNE CI-DESSOUS si nécessaire pour indiquer le bon chemin et nom de votre fichier !!!
 # Assurez-vous que le fichier est bien dans le dossier 'results'
-df = pd.read_excel("results\responses_with_scores.csv") # Updated relative path
+df = pd.read_csv("results/responses_with_scores.csv") # Changed to read_csv and used forward slash
 
 # --- Vérification (Optionnelle mais recommandée) ---
 # Décommentez les lignes suivantes pour vérifier que les données sont bien chargées
@@ -47,14 +47,28 @@ try:
     print(corr_matrix)
     
     # Create heatmap (enhanced for report)
-    plt.figure(figsize=(10, 8)) # Increased figure size
-    sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', fmt=".2f", linewidths=.5, annot_kws={"size": 10}) # Added annot_kws for annotation font size
-    plt.title('Matrice de Corrélation des Variables', fontsize=14) # French title
-    plt.xticks(rotation=45, ha='right', fontsize=12) # Increased xticks font size
+    
+    # Define mapping for clearer labels in the plot
+    label_mapping = {
+        var_X: 'Risque lié à la chaleur',
+        var_M1: 'Efficacité perçue des stratégies',
+        var_M2: 'Attitude environnementale',
+        var_M3: 'Intention environnementale',
+        var_Y: 'Comportements pro-environnementaux'
+    }
+    # Get the labels in the correct order of the correlation matrix columns/index
+    plot_labels = [label_mapping.get(col, col) for col in corr_matrix.columns]
+
+    plt.figure(figsize=(12, 10)) # Increased figure size further for longer labels
+    sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', fmt=".2f", linewidths=.5,
+                xticklabels=plot_labels, yticklabels=plot_labels, # Use mapped labels
+                annot_kws={"size": 10})
+    plt.title('Corrélations entre les cinq thèmes du modèle de médiation', fontsize=16) # Updated title
+    plt.xticks(rotation=45, ha='right', fontsize=10) # Adjusted xticks font size/rotation
     plt.yticks(rotation=0, fontsize=12) # Increased yticks font size
     
     # Save the plot
-    corr_plot_filename = 'results/correlation_matrix.png' # Updated path
+    corr_plot_filename = 'plots/correlation_matrix.png' # Changed path to plots/
     plt.tight_layout()
     plt.savefig(corr_plot_filename, dpi=300) # Added dpi=300 for higher resolution
     print(f"\nCorrelation matrix plot saved as: {corr_plot_filename}")
@@ -85,7 +99,7 @@ try:
     pairplot.fig.suptitle('Pairwise Relationships Between Variables (with R/R²)', y=1.02) # Add title slightly above plot
     
     # Save the plot
-    pairplot_filename = 'scatter_pairplot_with_R.png' # Changed filename
+    pairplot_filename = 'plots/scatter_pairplot_with_R.png' # Changed path to plots/
     pairplot.savefig(pairplot_filename)
     print(f"Pairplot saved as: {pairplot_filename}")
     plt.close(pairplot.fig) # Close the figure
@@ -290,7 +304,7 @@ if 'results_ci' in locals() and 'indirect_m1_est' in locals():
         ax.axhline(0, color='grey', linewidth=0.8) # Add line at y=0
         
         # Save the plot
-        plot_filename = 'results/mediation_indirect_effects.png' # Updated path
+        plot_filename = 'plots/mediation_indirect_effects.png' # Changed path to plots/
         plt.tight_layout()
         plt.savefig(plot_filename, dpi=300) # Added dpi=300
         print(f"\nPlot saved as: {plot_filename}")
@@ -306,3 +320,119 @@ print("- Look at the Point Estimate for the direction and magnitude.")
 print("- Look at the 95% Bootstrapped Confidence Interval (CI).")
 print("- If the CI does *not* contain zero, the indirect effect is statistically significant at the p < .05 level.")
 print("- Your hypothesis posits *positive* indirect effects. Check if the point estimate is positive and the CI is entirely above zero.")
+
+
+# --- 8. Generate Summary Text File ---
+summary_file_path = 'results/mediation_summary.txt'
+
+# Check if results are available before attempting to write the file
+if 'results_ci' in locals() and 'indirect_m1_est' in locals() and 'corr_matrix' in locals():
+    try:
+        # Prepare the summary string
+        summary_lines = []
+        summary_lines.append("--- Analyse de Médiation Multiple : Résumé des Résultats ---")
+        summary_lines.append("===========================================================")
+        summary_lines.append(f"Variable Indépendante (X): {var_X}")
+        summary_lines.append(f"Médiateurs (M1, M2, M3): {var_M1}, {var_M2}, {var_M3}")
+        summary_lines.append(f"Variable Dépendante (Y): {var_Y}")
+        summary_lines.append("\n--- 1. Matrice de Corrélation (Valeurs R) ---")
+        summary_lines.append(corr_matrix.to_string(float_format="{:.3f}".format))
+
+        summary_lines.append("\n--- 2. Estimations des Chemins (Coefficients de Régression) ---")
+        # Re-extract p-values for clarity in this section
+        key_X = f"Q('{var_X}')"
+        key_M1 = f"Q('{var_M1}')"
+        key_M2 = f"Q('{var_M2}')"
+        key_M3 = f"Q('{var_M3}')"
+        p_a1 = fit_m1_orig.pvalues.get(key_X, np.nan)
+        p_a2 = fit_m2_orig.pvalues.get(key_X, np.nan)
+        p_a3 = fit_m3_orig.pvalues.get(key_X, np.nan)
+        p_b1 = fit_y_orig.pvalues.get(key_M1, np.nan)
+        p_b2 = fit_y_orig.pvalues.get(key_M2, np.nan)
+        p_b3 = fit_y_orig.pvalues.get(key_M3, np.nan)
+        p_c_prime = fit_y_orig.pvalues.get(key_X, np.nan)
+        p_c_total = fit_total_orig.pvalues.get(key_X, np.nan)
+
+        summary_lines.append(f"  Chemin a1 ({var_X} -> {var_M1}): {a1_est:.4f} (p = {p_a1:.3f})")
+        summary_lines.append(f"  Chemin a2 ({var_X} -> {var_M2}): {a2_est:.4f} (p = {p_a2:.3f})")
+        summary_lines.append(f"  Chemin a3 ({var_X} -> {var_M3}): {a3_est:.4f} (p = {p_a3:.3f})")
+        summary_lines.append(f"  Chemin b1 ({var_M1} -> {var_Y} | X, M2, M3): {b1_est:.4f} (p = {p_b1:.3f})")
+        summary_lines.append(f"  Chemin b2 ({var_M2} -> {var_Y} | X, M1, M3): {b2_est:.4f} (p = {p_b2:.3f})")
+        summary_lines.append(f"  Chemin b3 ({var_M3} -> {var_Y} | X, M1, M2): {b3_est:.4f} (p = {p_b3:.3f})")
+        summary_lines.append(f"  Effet Direct (c') ({var_X} -> {var_Y} | M1, M2, M3): {c_prime_est:.4f} (p = {p_c_prime:.3f})")
+        summary_lines.append(f"  Effet Total (c) ({var_X} -> {var_Y}): {c_total_est:.4f} (p = {p_c_total:.3f})")
+
+        summary_lines.append("\n--- 3. Estimations des Effets Indirects (Point Estimates) ---")
+        summary_lines.append(f"  Indirect via {var_M1} (a1*b1): {indirect_m1_est:.4f}")
+        summary_lines.append(f"  Indirect via {var_M2} (a2*b2): {indirect_m2_est:.4f}")
+        summary_lines.append(f"  Indirect via {var_M3} (a3*b3): {indirect_m3_est:.4f}")
+        summary_lines.append(f"  Effet Indirect Total (a1*b1 + a2*b2 + a3*b3): {total_indirect_est:.4f}")
+
+        summary_lines.append("\n--- 4. Intervalles de Confiance Bootstrap (95% CI) ---")
+        for key, ci in results_ci.items():
+            label = key.replace('_', ' ').title()
+            if 'Indirect' in label or 'Direct' in label:
+                summary_lines.append(f"  {label}: [{ci[0]:.4f}, {ci[1]:.4f}]")
+
+        summary_lines.append("\n--- 5. Interprétation ---")
+        summary_lines.append("  Significativité : Un effet (direct ou indirect) est considéré statistiquement significatif")
+
+        summary_lines.append("\n--- 6. Analyse Spécifique des Résultats ---")
+        # Analyse de l'Effet Total
+        if p_c_total < 0.05:
+            summary_lines.append(f"  - L'effet total de '{var_X}' sur '{var_Y}' est statistiquement significatif (c = {c_total_est:.4f}, p = {p_c_total:.3f}).")
+        else:
+            summary_lines.append(f"  - L'effet total de '{var_X}' sur '{var_Y}' n'est pas statistiquement significatif (c = {c_total_est:.4f}, p = {p_c_total:.3f}).")
+        
+        # Analyse de l'Effet Direct
+        direct_ci = results_ci.get('direct_effect_c_prime', (np.nan, np.nan))
+        if 0 < direct_ci[0] or 0 > direct_ci[1]: # Check if CI excludes 0
+            summary_lines.append(f"  - L'effet direct de '{var_X}' sur '{var_Y}', en contrôlant pour les médiateurs, est significatif (c' = {c_prime_est:.4f}, CI 95% [{direct_ci[0]:.4f}, {direct_ci[1]:.4f}]).")
+        else:
+            summary_lines.append(f"  - L'effet direct de '{var_X}' sur '{var_Y}', en contrôlant pour les médiateurs, n'est pas significatif (c' = {c_prime_est:.4f}, CI 95% [{direct_ci[0]:.4f}, {direct_ci[1]:.4f}]).")
+
+        # Analyse des Effets Indirects
+        significant_indirect = False
+        for m_key, m_var, ind_est in [('indirect_M1', var_M1, indirect_m1_est), ('indirect_M2', var_M2, indirect_m2_est), ('indirect_M3', var_M3, indirect_m3_est)]:
+            ind_ci = results_ci.get(m_key, (np.nan, np.nan))
+            if 0 < ind_ci[0] or 0 > ind_ci[1]: # Check if CI excludes 0
+                summary_lines.append(f"  - L'effet indirect via '{m_var}' est statistiquement significatif (Est. = {ind_est:.4f}, CI 95% [{ind_ci[0]:.4f}, {ind_ci[1]:.4f}]).")
+                significant_indirect = True
+            else:
+                 summary_lines.append(f"  - L'effet indirect via '{m_var}' n'est pas statistiquement significatif (Est. = {ind_est:.4f}, CI 95% [{ind_ci[0]:.4f}, {ind_ci[1]:.4f}]).")
+        
+        # Analyse de l'Effet Indirect Total
+        total_ind_ci = results_ci.get('total_indirect', (np.nan, np.nan))
+        if 0 < total_ind_ci[0] or 0 > total_ind_ci[1]: # Check if CI excludes 0
+            summary_lines.append(f"  - L'effet indirect total est statistiquement significatif (Est. = {total_indirect_est:.4f}, CI 95% [{total_ind_ci[0]:.4f}, {total_ind_ci[1]:.4f}]).")
+            significant_indirect = True # Also mark if total is significant
+        else:
+            summary_lines.append(f"  - L'effet indirect total n'est pas statistiquement significatif (Est. = {total_indirect_est:.4f}, CI 95% [{total_ind_ci[0]:.4f}, {total_ind_ci[1]:.4f}]).")
+
+        # Conclusion Générale sur la Médiation
+        summary_lines.append("\n  Conclusion sur la Médiation:")
+        if significant_indirect:
+            summary_lines.append(f"  - L'analyse suggère qu'au moins un des médiateurs ({var_M1}, {var_M2}, {var_M3}) joue un rôle significatif dans la relation entre '{var_X}' et '{var_Y}'.")
+        else:
+            summary_lines.append(f"  - L'analyse n'apporte pas de preuve statistique pour supporter un effet de médiation par '{var_M1}', '{var_M2}', ou '{var_M3}' dans la relation entre '{var_X}' et '{var_Y}' sur la base des intervalles de confiance bootstrap à 95%.")
+        summary_lines.append("  (Note: L'interprétation finale doit considérer la théorie sous-jacente et la taille de l'échantillon.)")
+
+        summary_lines.append("  au seuil de p < .05 si son intervalle de confiance à 95% n'inclut PAS zéro.")
+        summary_lines.append("  Effet Direct (c') : L'effet de X sur Y après avoir contrôlé pour les médiateurs.")
+        summary_lines.append("  Effets Indirects (a*b) : L'effet de X sur Y qui passe *par* chaque médiateur.")
+        summary_lines.append("  Effet Indirect Total : La somme des effets indirects spécifiques.")
+        summary_lines.append("  Effet Total (c) : L'effet global de X sur Y, sans considérer les médiateurs.")
+        summary_lines.append(f"  Vérification : Effet Total (c) ≈ Effet Indirect Total + Effet Direct (c'). ({c_total_est:.4f} ≈ {total_indirect_est:.4f} + {c_prime_est:.4f} = {total_indirect_est + c_prime_est:.4f})")
+        summary_lines.append("  (Les petites différences sont dues à la variance d'estimation des modèles)")
+
+        # Write to file
+        with open(summary_file_path, 'w', encoding='utf-8') as f:
+            f.write("\n".join(summary_lines))
+        
+        print(f"\nSummary text file saved as: {summary_file_path}")
+
+    except Exception as e:
+        print(f"\nError generating summary text file: {e}")
+else:
+    print("\nSkipping summary text file generation because results were not calculated.")
+

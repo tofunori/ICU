@@ -1,0 +1,58 @@
+--- Analyse de Médiation Multiple : Résumé des Résultats ---
+===========================================================
+Variable Indépendante (X): score_risque_chaleur
+Médiateurs (M1, M2, M3): score_efficacite, score_attitude_env, score_intention_env
+Variable Dépendante (Y): score_comportements
+
+--- 1. Matrice de Corrélation (Valeurs R) ---
+                      score_risque_chaleur  score_efficacite  score_attitude_env  score_intention_env  score_comportements
+score_risque_chaleur                 1.000            -0.153               0.034                0.213                0.091
+score_efficacite                    -0.153             1.000               0.117                0.609                0.433
+score_attitude_env                   0.034             0.117               1.000                0.275                0.208
+score_intention_env                  0.213             0.609               0.275                1.000                0.578
+score_comportements                  0.091             0.433               0.208                0.578                1.000
+
+--- 2. Estimations des Chemins (Coefficients de Régression) ---
+  Chemin a1 (score_risque_chaleur -> score_efficacite): -0.1499 (p = 0.347)
+  Chemin a2 (score_risque_chaleur -> score_attitude_env): 0.0220 (p = 0.837)
+  Chemin a3 (score_risque_chaleur -> score_intention_env): 0.2646 (p = 0.186)
+  Chemin b1 (score_efficacite -> score_comportements | X, M2, M3): 0.1926 (p = 0.463)
+  Chemin b2 (score_attitude_env -> score_comportements | X, M1, M3): 0.1283 (p = 0.670)
+  Chemin b3 (score_intention_env -> score_comportements | X, M1, M2): 0.5261 (p = 0.019)
+  Effet Direct (c') (score_risque_chaleur -> score_comportements | M1, M2, M3): 0.0116 (p = 0.955)
+  Effet Total (c) (score_risque_chaleur -> score_comportements): 0.1248 (p = 0.577)
+
+--- 3. Estimations des Effets Indirects (Point Estimates) ---
+  Indirect via score_efficacite (a1*b1): -0.0289
+  Indirect via score_attitude_env (a2*b2): 0.0028
+  Indirect via score_intention_env (a3*b3): 0.1392
+  Effet Indirect Total (a1*b1 + a2*b2 + a3*b3): 0.1131
+
+--- 4. Intervalles de Confiance Bootstrap (95% CI) ---
+  Indirect M1: [-0.1536, 0.0942]
+  Indirect M2: [-0.0638, 0.0600]
+  Indirect M3: [-0.0359, 0.4098]
+  Total Indirect: [-0.1676, 0.4448]
+  Direct Effect C Prime: [-0.3824, 0.4473]
+
+--- 5. Interprétation ---
+  Significativité : Un effet (direct ou indirect) est considéré statistiquement significatif
+
+--- 6. Analyse Spécifique des Résultats ---
+  - L'effet total de 'score_risque_chaleur' sur 'score_comportements' n'est pas statistiquement significatif (c = 0.1248, p = 0.577).
+  - L'effet direct de 'score_risque_chaleur' sur 'score_comportements', en contrôlant pour les médiateurs, n'est pas significatif (c' = 0.0116, CI 95% [-0.3824, 0.4473]).
+  - L'effet indirect via 'score_efficacite' n'est pas statistiquement significatif (Est. = -0.0289, CI 95% [-0.1536, 0.0942]).
+  - L'effet indirect via 'score_attitude_env' n'est pas statistiquement significatif (Est. = 0.0028, CI 95% [-0.0638, 0.0600]).
+  - L'effet indirect via 'score_intention_env' n'est pas statistiquement significatif (Est. = 0.1392, CI 95% [-0.0359, 0.4098]).
+  - L'effet indirect total n'est pas statistiquement significatif (Est. = 0.1131, CI 95% [-0.1676, 0.4448]).
+
+  Conclusion sur la Médiation:
+  - L'analyse n'apporte pas de preuve statistique pour supporter un effet de médiation par 'score_efficacite', 'score_attitude_env', ou 'score_intention_env' dans la relation entre 'score_risque_chaleur' et 'score_comportements' sur la base des intervalles de confiance bootstrap à 95%.
+  (Note: L'interprétation finale doit considérer la théorie sous-jacente et la taille de l'échantillon.)
+  au seuil de p < .05 si son intervalle de confiance à 95% n'inclut PAS zéro.
+  Effet Direct (c') : L'effet de X sur Y après avoir contrôlé pour les médiateurs.
+  Effets Indirects (a*b) : L'effet de X sur Y qui passe *par* chaque médiateur.
+  Effet Indirect Total : La somme des effets indirects spécifiques.
+  Effet Total (c) : L'effet global de X sur Y, sans considérer les médiateurs.
+  Vérification : Effet Total (c) ≈ Effet Indirect Total + Effet Direct (c'). (0.1248 ≈ 0.1131 + 0.0116 = 0.1248)
+  (Les petites différences sont dues à la variance d'estimation des modèles)
