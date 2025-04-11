@@ -1,0 +1,34 @@
+Unnamed: 0,Thème,Pas du tout d'accord,Pas d'accord,Ni en désaccord ni d'accord,D'accord,Tout à fait d'accord,Moyenne,Écart-type
+Les vagues de chaleur deviennent plus intenses.,Risque chaleur,0,0,2,15,22,4.512820512820513,0.6013928951234736
+Les conséquences des vagues de chaleur sur la santé sont graves.,Risque chaleur,0,4,15,13,7,3.58974358974359,0.9095385966738333
+Les vagues de chaleur représentent une menace pour l’environnement urbain.,Risque chaleur,7,12,5,13,2,2.769230769230769,1.245233828423157
+Je me sens personnellement vulnérable aux vagues de chaleur.,Risque chaleur,4,8,6,16,5,3.256410256410256,1.229418962418912
+Mon logement me protège bien de la chaleur intense.,Risque chaleur,12,8,6,9,3,2.552631578947369,1.369501160337226
+Je crains que les futures vagues de chaleur affectent ma qualité de vie.,Risque chaleur,1,2,6,17,13,4.0,0.9733285267845752
+Fréquenter les parcs est une stratégie efficace pour réduire l’inconfort pendant les canicules.,Efficacité stratégies,1,2,9,8,19,4.076923076923077,1.085420495394233
+Avoir accès à des points d’eau publics aide à mieux supporter la chaleur.,Efficacité stratégies,0,2,5,11,20,4.289473684210527,0.8976815403791096
+Augmenter le nombre d’arbres est inutile pour réduire la température en ville.,Efficacité stratégies,0,0,0,1,38,4.974358974358974,0.1601281538050872
+Je peux trouver et utiliser des endroits frais pendant une canicule.,Efficacité stratégies,0,4,4,17,14,4.051282051282051,0.9444775205237176
+Il m’est parfois difficile d’adopter des comportements pour mieux gérer la chaleur.,Efficacité stratégies,0,11,13,11,4,3.205128205128205,0.9781692669011082
+Il m’est facile d’accéder à des parcs de qualité près de chez moi.,Efficacité stratégies,2,4,5,19,9,3.743589743589744,1.09347222711461
+"Même lorsqu’il fait très chaud, je peux utiliser des modes de transport actifs.",Efficacité stratégies,7,6,9,12,5,3.051282051282051,1.316868653257615
+Valoriser les espaces verts en ville est important pour moi.,Attitude environnementale,0,0,0,1,38,4.974358974358974,0.1601281538050872
+Je soutiens les politiques qui augmentent la végétation urbaine.,Attitude environnementale,0,0,0,5,34,4.871794871794871,0.3386884284293705
+Je préfère rester à l’intérieur que d’utiliser les parcs lors des canicules.,Attitude environnementale,8,9,18,3,1,2.487179487179487,0.9966204702259603
+Réduire l’espace pour les voitures n’est pas une bonne mesure.,Attitude environnementale,2,3,9,10,15,3.846153846153846,1.181846493248273
+Les espaces verts rendent la ville plus agréable à vivre.,Attitude environnementale,0,0,0,6,33,4.846153846153846,0.3655177681951957
+Il est important de protéger les accès publics à l’eau.,Attitude environnementale,0,1,3,8,27,4.564102564102564,0.7537580162747961
+"C’est à la municipalité de gérer la chaleur, pas aux citoyens.",Attitude environnementale,0,5,12,15,7,3.615384615384615,0.935143800239036
+J’ai l’intention de fréquenter plus souvent les parcs de ma ville.,Intention environnementale,1,4,7,16,11,3.820512820512821,1.048100910966187
+J’ai l’intention de soutenir les initiatives pour augmenter les espaces verts.,Intention environnementale,1,2,1,16,19,4.282051282051282,0.9444775205237175
+Je n’ai pas l’intention de m’informer sur les solutions pour adapter la ville à la chaleur.,Intention environnementale,2,3,9,13,11,3.736842105263158,1.131471429607071
+J’ai l’intention d’adopter des comportements plus respectueux de l’environnement.,Intention environnementale,0,2,2,12,22,4.421052631578948,0.8263099002245488
+Je n’ai pas l’intention d’utiliser davantage le transport actif.,Intention environnementale,1,8,7,11,12,3.641025641025641,1.202785790246947
+Je serais plus motivé à agir si la municipalité s’engage davantage.,Intention environnementale,0,0,8,15,16,4.205128205128205,0.7670684859113119
+Fréquenté des parcs pour me détendre ou me rafraîchir.,Comportements environnementaux,1,3,11,15,8,3.684210526315789,0.9892739122203291
+Participé à une activité de verdissement ou nettoyage.,Comportements environnementaux,22,8,5,2,2,1.82051282051282,1.16690762886571
+Signé une pétition ou contacté un élu pour un enjeu environnemental.,Comportements environnementaux,22,3,8,5,1,1.974358974358974,1.24577558778245
+Réduit ma consommation d’eau à la maison.,Comportements environnementaux,3,4,13,11,7,3.394736842105263,1.151719599982718
+Utilisé le transport actif au lieu de la voiture.,Comportements environnementaux,6,5,6,8,14,3.487179487179487,1.484512942841149
+Composté mes matières organiques.,Comportements environnementaux,5,5,4,5,20,3.769230769230769,1.512431615879723
+Favorisé le refroidissement passif plutôt que la climatisation.,Comportements environnementaux,6,7,11,8,7,3.076923076923077,1.325550836536613

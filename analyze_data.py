@@ -83,4 +83,52 @@ def main():
         print(f"An error occurred during processing: {e}")
 
 if __name__ == "__main__":
+    main()        return value
+
+# --- Main Script Logic ---
+def main():
+    print("Fetching data from Supabase...")
+
+    # Construct Supabase API endpoint for fetching all rows
+    fetch_url = f"{SUPABASE_URL}/rest/v1/{SUPABASE_TABLE}?select=*"
+    headers = {
+        "apikey": SUPABASE_KEY,
+        "Authorization": f"Bearer {SUPABASE_KEY}"
+    }
+
+    try:
+        response = requests.get(fetch_url, headers=headers)
+        response.raise_for_status() # Check for HTTP errors
+        data = response.json()
+
+        if not data:
+            print("No data found in the Supabase table.")
+            return
+
+        print(f"Successfully fetched {len(data)} rows.")
+
+        # Load data into pandas DataFrame
+        df = pd.DataFrame(data)
+
+        print("Applying reverse coding...")
+        for col in COLUMNS_TO_REVERSE:
+            if col in df.columns:
+                print(f" - Reversing column: {col}")
+                # Apply the reverse_code function to the column
+                # Ensure apply works correctly even if column contains non-numeric strings
+                df[col] = df[col].apply(reverse_code)
+            else:
+                print(f" - Warning: Column '{col}' not found in fetched data.")
+
+        # Save the processed DataFrame to a new CSV file
+        df.to_csv(OUTPUT_CSV_FILE, index=False, encoding='utf-8')
+        print(f"\nProcessed data saved to '{OUTPUT_CSV_FILE}'.")
+        print("This file now contains the original data with the specified columns reverse-coded.")
+
+    except requests.exceptions.RequestException as e:
+        print(f"Error fetching data from Supabase: {e}")
+    except Exception as e:
+        print(f"An error occurred during processing: {e}")
+
+if __name__ == "__main__":
     main()
