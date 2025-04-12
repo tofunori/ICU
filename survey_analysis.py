@@ -3,6 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+import pingouin as pg
 # Ensure plots directory exists
 os.makedirs("results", exist_ok=True) # Updated directory
 
@@ -98,5 +99,119 @@ if "vulnerable" in df.columns and "logement" in df.columns:
 # 6. Summary statistics for Likert columns
 summary_stats = df[likert_cols].describe().transpose()
 summary_stats.to_csv("data/likert_summary_stats.csv") # Updated path
+# --- Cronbach's Alpha Calculation ---
 
+# Function to calculate and print Cronbach's Alpha
+def calculate_and_print_cronbach_alpha(df):
+    """
+    Calculates and prints Cronbach's Alpha for predefined dimensions.
+
+    Args:
+        df (pd.DataFrame): DataFrame containing the survey responses,
+                           with columns corresponding to Likert scale items.
+    """
+    # Check if pingouin is available (import already added at top)
+    # Define the items for each dimension based on the previous analysis/image
+    dimensions = {
+        "Risque lié à la chaleur": [
+            'vagues_intenses', 'conseq_sante', 'menace_env', 'vulnerable',
+            'logement_protection', 'crainte_futur'
+        ],
+        "Efficacité perçue des stratégies": [ # Updated based on CSV headers
+            'parcs_efficace', 'eau_publique', 'arbres_inutile',
+            'difficile_comportements', 'acces_parcs', 'transport_chaud'
+            # Note: 'auto_efficace', 'acces_verts' from image not found in CSV
+        ],
+        "Attitude environnementale": [
+            'valoriser_espaces_verts', 'soutenir_politiques', 'prefere_interieur',
+            'contre_reduction_voiture', 'espaces_agreables', 'proteger_acces_eau',
+            'municipalite_responsable'
+        ],
+        "Intention environnementale": [ # Updated based on CSV headers
+            'intention_frequent_parcs', 'intention_soutenir_initiatives',
+            'pas_intention_s_informer', 'intention_comportements_eco', # Was 'intention_comportement' in image
+            'pas_intention_transport_actif', 'motivation_si_municipalite'
+        ],
+        "Comportements observés": [ # Updated based on CSV headers
+            'freq_parcs', 'activite_verdissement', 'petition_contact', 'reduire_eau', # Was 'reduction_eau' in image
+            'transport_alternatif', 'compost', 'refroidissement_passif' # Was 'transport_actif' in image
+        ]
+    }
+
+    print("\n--- Cronbach's Alpha Internal Consistency Analysis ---")
+    print("-" * 55)
+    all_alphas_valid = True
+    for dim_name, items in dimensions.items():
+        # Check if all items for the dimension exist in the DataFrame
+        missing_items = [item for item in items if item not in df.columns]
+        if missing_items:
+            print(f"Warning: Dimension '{dim_name}' - Missing columns: {', '.join(missing_items)}. Skipping alpha calculation.")
+            all_alphas_valid = False
+            print("-" * 55)
+            continue
+
+        # Select the relevant columns for the current dimension
+        # Use .copy() to avoid SettingWithCopyWarning later if modifications were needed
+        dimension_data = df[items].copy()
+
+        # Ensure data is numeric, coercing errors (might be redundant if done globally, but safe)
+        for item in items:
+             dimension_data[item] = pd.to_numeric(dimension_data[item], errors='coerce')
+
+        # Drop rows with any missing values *within that dimension's items*
+        dimension_data_cleaned = dimension_data.dropna()
+        n_complete = len(dimension_data_cleaned)
+        n_total = len(dimension_data)
+
+        print(f"Dimension: {dim_name}")
+        # Limit the number of items printed for brevity if too many
+        if len(items) > 5:
+             print(f"  Items: {', '.join(items[:3])}, ..., {items[-1]}")
+        else:
+             print(f"  Items: {', '.join(items)}")
+
+
+        if n_complete < 2:
+             print(f"  Result: Not enough valid data ({n_complete} complete responses out of {n_total}) to calculate alpha.")
+             all_alphas_valid = False
+        elif dimension_data_cleaned.shape[1] < 2:
+             print(f"  Result: Needs at least two items to calculate alpha (found {dimension_data_cleaned.shape[1]}).")
+             all_alphas_valid = False
+        else:
+            # Calculate Cronbach's alpha
+            try:
+                # Note: pingouin returns alpha, confidence interval, etc.
+                alpha_results = pg.cronbach_alpha(data=dimension_data_cleaned)
+                alpha_value = alpha_results[0]
+                confidence_interval = alpha_results[1] # 95% CI
+
+                print(f"  Cronbach's Alpha = {alpha_value:.3f}")
+                # Optional: Print confidence interval
+                # print(f"  95% CI = [{confidence_interval[0]:.3f}, {confidence_interval[1]:.3f}]")
+                print(f"  (Based on {n_complete} complete responses for this dimension out of {n_total} total)")
+
+                # Item analysis code removed.
+
+            # Correctly indented except blocks
+            except ValueError as ve:
+                 # Catch specific errors like 'Input must contain at least two columns'
+                 print(f"  Error calculating alpha for '{dim_name}': {ve}")
+                 all_alphas_valid = False
+            except Exception as e:
+                 # Catch any other unexpected errors during calculation
+                 print(f"  Unexpected error calculating alpha for '{dim_name}': {e}")
+                 all_alphas_valid = False
+
+        # Correctly indented print statement (aligned with the 'if n_complete < 2:' block)
+        print("-" * 55)
+
+    if not all_alphas_valid:
+        print("Note: Some alpha calculations could not be performed or encountered errors.")
+    print("--- End Cronbach's Alpha Analysis ---\n")
+
+# Call the function after data loading and cleaning
+calculate_and_print_cronbach_alpha(df)
+
+# Modify the final print statement to reflect the added analysis
+print("Analysis complete. Plots saved in 'results/', summary statistics in 'data/', and Cronbach's Alpha printed.")
 print("Analysis complete. Plots saved in 'results/' and summary statistics in 'data/'.") # Updated message
