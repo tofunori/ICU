@@ -22,9 +22,9 @@ plt.style.use('seaborn-v0_8-ticks') # Changed style to 'ticks' for a cleaner aca
 plt.rcParams.update({
     'font.size': 10,             # Base font size (Reduced)
     'axes.titlesize': 14,        # Title font size (Reduced)
-    'axes.labelsize': 12,        # Axis label font size (Reduced)
-    'xtick.labelsize': 10,       # X-tick label size (Reduced)
-    'ytick.labelsize': 10,       # Y-tick label size (Reduced)
+    'axes.labelsize': 14,        # Axis label font size (Increased)
+    'xtick.labelsize': 12,       # X-tick label size (Increased)
+    'ytick.labelsize': 12,       # Y-tick label size (Increased)
     'figure.titlesize': 16,      # Figure title font size (Reduced)
     'legend.fontsize': 10,       # Legend font size (Reduced)
 })
@@ -63,7 +63,7 @@ plt.axhline(3, color='grey', linestyle=':', linewidth=1.5, zorder=0, label='Poin
 for i, bar in enumerate(bars):
     yval = bar.get_height()
     theme_name = means.index[i] # Get the theme name corresponding to the bar index
-    plt.text(bar.get_x() + bar.get_width()/2.0, yval + std_devs[theme_name] + 0.15, f'{yval:.2f}', va='bottom', ha='center', fontsize=9) # Reduced font size for text on bars
+    plt.text(bar.get_x() + bar.get_width()/2.0, yval + std_devs[theme_name] + 0.15, f'{yval:.2f}', va='bottom', ha='center', fontsize=11) # Increased font size for text on bars
 
 plt.tight_layout(pad=1.5) # Added padding
 plt.savefig(os.path.join(OUTPUT_DIR, 'bar_chart_means_stddev.png'), dpi=300, bbox_inches='tight') # Added DPI and bbox_inches
